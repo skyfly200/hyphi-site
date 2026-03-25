@@ -130,6 +130,14 @@
       padding: 8rem 2rem 3rem;
     }
 
+    .hero-title-wrap {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .hero-orb {
       position: absolute;
       width: 306px;
@@ -185,7 +193,7 @@
 
     .hero-title {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(3.2rem, 9vw, 7rem);
       font-weight: 400;
@@ -634,7 +642,11 @@
 
 <!-- HERO -->
 <section class="hero">
-  <svg class="hero-orb" xmlns="http://www.w3.org/2000/svg" viewBox="-82 -82 164 164">
+  <p class="hero-meet">meet</p>
+  <p class="hero-wordmark">Hyphi</p>
+  <p class="hero-eyebrow">Handcrafted LED art · Boulder, CO</p>
+  <div class="hero-title-wrap">
+    <svg class="hero-orb" xmlns="http://www.w3.org/2000/svg" viewBox="-82 -82 164 164">
       <defs>
         <radialGradient id="sGh" cx="38%" cy="35%" r="60%">
           <stop offset="0%" stop-color="#e080ff"/>
@@ -683,13 +695,11 @@
         <circle cx="0.96" cy="-59.39" r="12.73" fill="url(#sGh)"/>
       </g>
     </svg>
-  <p class="hero-meet">meet</p>
-  <p class="hero-wordmark">Hyphi</p>
-  <p class="hero-eyebrow">Handcrafted LED art · Boulder, CO</p>
-  <h1 class="hero-title">
-    Living<br>
-    <strong>Light</strong>
-  </h1>
+    <h1 class="hero-title">
+      Living<br>
+      <strong>Light</strong>
+    </h1>
+  </div>
   <p class="hero-sub">Bioluminescent objects for festival floors, flow arts, and spaces that deserve something stranger.</p>
   <div class="hero-cta">
     <a href="#signup" class="btn-primary">Join the Glow</a>

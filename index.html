@@ -584,6 +584,8 @@
       .nav-links { display: none; }
       .about-inner { grid-template-columns: 1fr; gap: 3rem; }
       .open-source-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .open-source-inner .about-body { order: -1; }
+      .open-source-inner .pillars-mini { order: 1; }
       footer { flex-direction: column; gap: 1.2rem; text-align: center; }
       .mc-field-group { flex-direction: column; }
       .button { border-left: none; border-top: 1px solid var(--accent); }
@@ -791,7 +793,7 @@
         </div>
       </div>
       <div class="pillar-row">
-        <span class="pillar-icon">💻</span>
+        <span class="pillar-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 90" style="width:1.6rem;height:auto" fill="#0099B0"><path d="M74.7,82.2 A43,43 0 1,0 25.3,82.2 L32.2,72.4 A31,31 0 1,1 67.8,72.4 Z"/><path d="M41.5,30 A8.5,8.5 0 0,0 58.5,30 L67.8,72.4 L32.2,72.4 Z"/></svg></span>
         <div class="pillar-text">
           <h3>Open Source Firmware</h3>
           <p>All code lives on GitHub under a permissive license. Audit it, fork it, or contribute to the community.</p>

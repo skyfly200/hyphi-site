@@ -18,29 +18,39 @@
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700;1,300&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --ink:      #06040f;
-      --deep:     #0c0820;
-      --purple:   #7B2FBE;
-      --magenta:  #C060FF;
-      --pink:     #E080FF;
-      --rose:     #ff50c0;
-      --white:    #ede8f8;
-      --muted:    #7a6e99;
-      --border:   rgba(192,96,255,0.18);
+      --bg:        #0a0a0f;
+      --surface:   #111118;
+      --panel:     #16161f;
+      --border:    #2a2a3a;
+      --muted:     #3a3a50;
+      --text:      #e8e8f0;
+      --sub:       #7a7a9a;
+      --accent:    #ff6b35;
+      --accent2:   #7b5cfa;
+      --glow:      rgba(255,107,53,0.18);
+      --glow2:     rgba(123,92,250,0.15);
+      --connected: #3dffc0;
+      --r:         8px;
+      /* legacy aliases */
+      --ink:   #0a0a0f;
+      --white: #e8e8f0;
+      --pink:  #ff6b35;
+      --magenta: #7b5cfa;
+      --rose:  #ff6b35;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--ink);
-      color: var(--white);
+      background: var(--bg);
+      color: var(--text);
       font-family: 'DM Sans', sans-serif;
       font-weight: 300;
       overflow-x: hidden;
@@ -63,7 +73,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 1.4rem 3rem;
-      background: linear-gradient(to bottom, rgba(6,4,15,0.95), transparent);
+      background: linear-gradient(to bottom, rgba(10,10,15,0.95), transparent);
       backdrop-filter: blur(4px);
     }
 
@@ -78,19 +88,15 @@
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      filter: drop-shadow(0 0 8px rgba(192,96,255,0.5));
+      filter: drop-shadow(0 0 8px var(--glow));
     }
 
     .nav-wordmark {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Bebas Neue', sans-serif;
       font-size: 1.5rem;
-      font-weight: 700;
       letter-spacing: .12em;
       text-transform: uppercase;
-      background: linear-gradient(135deg, var(--pink), var(--magenta));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--accent);
     }
 
     .nav-links {
@@ -100,16 +106,16 @@
     }
 
     .nav-links a {
-      font-family: 'Space Mono', monospace;
+      font-family: 'DM Mono', monospace;
       font-size: .67rem;
       letter-spacing: .2em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--sub);
       text-decoration: none;
       transition: color .3s;
     }
 
-    .nav-links a:hover { color: var(--pink); }
+    .nav-links a:hover { color: var(--accent); }
 
     /* ── HERO ── */
     .hero {
@@ -129,41 +135,37 @@
       height: 180px;
       margin-bottom: 2.8rem;
       border-radius: 50%;
-      filter: drop-shadow(0 0 40px rgba(192,96,255,0.55)) drop-shadow(0 0 80px rgba(192,96,255,0.25));
+      filter: drop-shadow(0 0 40px var(--glow)) drop-shadow(0 0 80px var(--glow2));
       opacity: 0;
       animation: fadeUp .9s ease forwards .2s;
     }
 
     .hero-wordmark {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Bebas Neue', sans-serif;
       font-size: 2.2rem;
-      font-weight: 700;
       letter-spacing: .18em;
       text-transform: uppercase;
-      background: linear-gradient(135deg, var(--pink), var(--magenta));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--accent);
       margin-bottom: 1.4rem;
       opacity: 0;
       animation: fadeUp .9s ease forwards .35s;
     }
 
     .hero-eyebrow {
-      font-family: 'Space Mono', monospace;
+      font-family: 'DM Mono', monospace;
       font-size: .65rem;
       letter-spacing: .35em;
       text-transform: uppercase;
-      color: var(--magenta);
+      color: var(--accent2);
       margin-bottom: 1.5rem;
       opacity: 0;
       animation: fadeUp .8s ease forwards .5s;
     }
 
     .hero-title {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(3.2rem, 9vw, 7rem);
-      font-weight: 300;
+      font-weight: 400;
       line-height: 1.05;
       letter-spacing: .06em;
       text-transform: uppercase;
@@ -173,12 +175,8 @@
     }
 
     .hero-title strong {
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--pink) 0%, var(--magenta) 60%, var(--rose) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: drop-shadow(0 0 30px rgba(192,96,255,0.4));
+      color: var(--accent);
+      filter: drop-shadow(0 0 30px var(--glow));
       display: block;
     }
 
@@ -186,11 +184,9 @@
       max-width: 500px;
       font-size: 1.05rem;
       line-height: 1.75;
-      color: rgba(237,232,248,0.6);
+      color: var(--sub);
       margin-bottom: 3rem;
-      font-style: italic;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
+      font-family: 'DM Sans', sans-serif;
       opacity: 0;
       animation: fadeUp .9s ease forwards .9s;
     }
@@ -203,24 +199,25 @@
     .btn-primary {
       display: inline-block;
       padding: .9rem 2.8rem;
-      background: rgba(192,96,255,0.12);
-      border: 1px solid var(--magenta);
-      color: var(--pink);
-      font-family: 'Space Mono', monospace;
+      background: var(--accent);
+      border: 1px solid var(--accent);
+      color: var(--bg);
+      font-family: 'DM Mono', monospace;
       font-size: .72rem;
       letter-spacing: .2em;
       text-transform: uppercase;
       text-decoration: none;
       border-radius: 2px;
       transition: all .35s;
-      box-shadow: 0 0 24px rgba(192,96,255,0.15);
+      box-shadow: 0 0 24px var(--glow);
       cursor: pointer;
     }
 
     .btn-primary:hover {
-      background: rgba(192,96,255,0.2);
-      box-shadow: 0 0 48px rgba(192,96,255,0.35);
+      background: var(--accent);
+      box-shadow: 0 0 48px var(--glow);
       transform: translateY(-2px);
+      opacity: .88;
     }
 
     .scroll-hint {
@@ -237,17 +234,17 @@
     }
 
     .scroll-hint span {
-      font-family: 'Space Mono', monospace;
+      font-family: 'DM Mono', monospace;
       font-size: .58rem;
       letter-spacing: .25em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--sub);
     }
 
     .scroll-line {
       width: 1px;
       height: 36px;
-      background: linear-gradient(to bottom, var(--magenta), transparent);
+      background: linear-gradient(to bottom, var(--accent), transparent);
       animation: pulse 2s ease-in-out infinite;
     }
 
@@ -256,7 +253,7 @@
       position: relative;
       z-index: 1;
       height: 1px;
-      background: linear-gradient(to right, transparent, var(--magenta), var(--rose), var(--magenta), transparent);
+      background: linear-gradient(to right, transparent, var(--accent), var(--accent2), var(--accent), transparent);
       opacity: .25;
     }
 
@@ -277,26 +274,27 @@
     }
 
     .section-tag {
-      font-family: 'Space Mono', monospace;
+      font-family: 'DM Mono', monospace;
       font-size: .62rem;
       letter-spacing: .3em;
       text-transform: uppercase;
-      color: var(--magenta);
+      color: var(--accent);
       margin-bottom: 1.4rem;
       display: block;
     }
 
     .about-heading {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(2rem, 3.5vw, 3rem);
-      font-weight: 300;
+      font-weight: 400;
       line-height: 1.2;
       margin-bottom: 2rem;
       letter-spacing: .03em;
     }
 
     .about-heading em {
-      font-weight: 500;
+      font-style: normal;
+      color: var(--accent);
       color: var(--pink);
       font-style: italic;
     }
@@ -304,7 +302,7 @@
     .about-body p {
       font-size: .97rem;
       line-height: 1.85;
-      color: rgba(237,232,248,0.55);
+      color: var(--sub);
       margin-bottom: 1.1rem;
     }
 
@@ -319,15 +317,15 @@
       align-items: flex-start;
       gap: 1.2rem;
       padding: 1.4rem 1.6rem;
-      background: rgba(192,96,255,0.04);
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 2px;
+      border-radius: var(--r);
       transition: border-color .3s, background .3s;
     }
 
     .pillar-row:hover {
-      border-color: rgba(192,96,255,0.35);
-      background: rgba(192,96,255,0.08);
+      border-color: var(--accent);
+      background: var(--panel);
     }
 
     .pillar-icon {
@@ -337,11 +335,11 @@
     }
 
     .pillar-text h3 {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Bebas Neue', sans-serif;
       font-size: 1.1rem;
-      font-weight: 500;
+      font-weight: 400;
       margin-bottom: .35rem;
-      color: var(--pink);
+      color: var(--accent);
       display: flex;
       align-items: center;
       gap: .6rem;
@@ -349,21 +347,20 @@
     }
 
     .badge-soon {
-      font-family: 'Space Mono', monospace;
+      font-family: 'DM Mono', monospace;
       font-size: .55rem;
       letter-spacing: .15em;
       text-transform: uppercase;
-      color: var(--muted);
-      border: 1px solid rgba(122,110,153,0.45);
+      color: var(--sub);
+      border: 1px solid var(--border);
       border-radius: 2px;
       padding: .15em .5em;
-      -webkit-text-fill-color: var(--muted);
     }
 
     .pillar-text p {
       font-size: .85rem;
       line-height: 1.65;
-      color: var(--muted);
+      color: var(--sub);
     }
 
     /* ── SIGNUP ── */
@@ -381,43 +378,41 @@
       transform: translate(-50%, -50%);
       width: 800px;
       height: 500px;
-      background: radial-gradient(ellipse, rgba(192,96,255,.07) 0%, rgba(123,47,190,.04) 40%, transparent 70%);
+      background: radial-gradient(ellipse, var(--glow2) 0%, var(--glow) 40%, transparent 70%);
       pointer-events: none;
       border-radius: 50%;
     }
 
     .signup-tag {
-      font-family: 'Space Mono', monospace;
+      font-family: 'DM Mono', monospace;
       font-size: .62rem;
       letter-spacing: .3em;
       text-transform: uppercase;
-      color: var(--rose);
+      color: var(--accent2);
       margin-bottom: 1.2rem;
       display: block;
     }
 
     .signup-title {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(2.2rem, 5vw, 4rem);
-      font-weight: 300;
+      font-weight: 400;
       letter-spacing: .06em;
       text-transform: uppercase;
       margin-bottom: 1rem;
     }
 
     .signup-title strong {
-      font-weight: 700;
-      color: var(--pink);
+      color: var(--accent);
     }
 
     .signup-sub {
       max-width: 440px;
       margin: 0 auto 3rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      font-style: italic;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
       line-height: 1.7;
-      color: rgba(237,232,248,0.5);
+      color: var(--sub);
     }
 
     /* Mailchimp form wrapper */
@@ -430,54 +425,55 @@
     .mc-field-group {
       display: flex;
       border: 1px solid var(--border);
-      border-radius: 2px;
+      border-radius: var(--r);
       overflow: hidden;
-      box-shadow: 0 0 32px rgba(192,96,255,0.1);
+      box-shadow: 0 0 32px var(--glow2);
       transition: box-shadow .3s;
     }
 
     .mc-field-group:focus-within {
-      box-shadow: 0 0 48px rgba(192,96,255,0.25);
-      border-color: rgba(192,96,255,0.45);
+      box-shadow: 0 0 48px var(--glow);
+      border-color: var(--accent);
     }
 
     #mce-EMAIL {
       flex: 1;
       padding: 1rem 1.4rem;
-      background: rgba(192,96,255,0.05);
+      background: var(--surface);
       border: none;
       outline: none;
-      color: var(--white);
+      color: var(--text);
       font-family: 'DM Sans', sans-serif;
       font-size: .95rem;
       font-weight: 300;
     }
 
-    #mce-EMAIL::placeholder { color: rgba(237,232,248,0.22); }
+    #mce-EMAIL::placeholder { color: var(--sub); }
 
     .button {
       padding: 1rem 2rem;
-      background: rgba(192,96,255,0.14);
+      background: var(--accent);
       border: none;
-      border-left: 1px solid var(--border);
-      color: var(--pink);
-      font-family: 'Space Mono', monospace;
+      border-left: 1px solid var(--accent);
+      color: var(--bg);
+      font-family: 'DM Mono', monospace;
       font-size: .7rem;
       letter-spacing: .2em;
       text-transform: uppercase;
       cursor: pointer;
-      transition: background .3s;
+      transition: opacity .3s;
       white-space: nowrap;
     }
 
-    .button:hover { background: rgba(192,96,255,0.25); }
+    .button:hover { opacity: .85; }
 
     .signup-note {
       margin-top: 1.1rem;
-      font-family: 'Space Mono', monospace;
+      font-family: 'DM Mono', monospace;
       font-size: .6rem;
       letter-spacing: .12em;
-      color: rgba(237,232,248,0.18);
+      color: var(--sub);
+      opacity: .5;
     }
 
     /* ── FOOTER ── */
@@ -485,7 +481,7 @@
       position: relative;
       z-index: 1;
       padding: 2.5rem 3rem;
-      border-top: 1px solid rgba(192,96,255,0.1);
+      border-top: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -505,12 +501,11 @@
     }
 
     .footer-wordmark {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Bebas Neue', sans-serif;
       font-size: .95rem;
-      font-weight: 700;
       letter-spacing: .12em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--sub);
     }
 
     .footer-links {
@@ -520,22 +515,23 @@
     }
 
     .footer-links a {
-      font-family: 'Space Mono', monospace;
+      font-family: 'DM Mono', monospace;
       font-size: .6rem;
       letter-spacing: .15em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--sub);
       text-decoration: none;
       transition: color .3s;
     }
 
-    .footer-links a:hover { color: var(--pink); }
+    .footer-links a:hover { color: var(--accent); }
 
     .footer-copy {
-      font-family: 'Space Mono', monospace;
+      font-family: 'DM Mono', monospace;
       font-size: .58rem;
       letter-spacing: .1em;
-      color: rgba(237,232,248,0.15);
+      color: var(--sub);
+      opacity: .4;
     }
 
     /* ── KEYFRAMES ── */
@@ -572,7 +568,7 @@
       .about-inner { grid-template-columns: 1fr; gap: 3rem; }
       footer { flex-direction: column; gap: 1.2rem; text-align: center; }
       .mc-field-group { flex-direction: column; }
-      .button { border-left: none; border-top: 1px solid var(--border); }
+      .button { border-left: none; border-top: 1px solid var(--accent); }
     }
   </style>
 </head>

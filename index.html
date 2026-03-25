@@ -52,6 +52,7 @@
       background: var(--bg);
       color: var(--text);
       font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
       font-weight: 300;
       overflow-x: hidden;
     }
@@ -145,7 +146,8 @@
       font-size: 2.2rem;
       letter-spacing: .18em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--accent2);
+      text-shadow: 0 0 18px rgba(255, 107, 53, 0.45), 0 0 40px rgba(255, 107, 53, 0.2);
       margin-bottom: 1.4rem;
       opacity: 0;
       animation: fadeUp .9s ease forwards .35s;
@@ -229,6 +231,7 @@
       flex-direction: column;
       align-items: center;
       gap: .5rem;
+      margin-top: 1.5rem;
       opacity: 0;
       animation: fadeIn 1s ease forwards 2s;
     }
@@ -642,6 +645,20 @@
         <div class="pillar-text">
           <h3>Bare PCBs <span class="badge-soon">Coming Soon</span></h3>
           <p>Raw boards for artists who want to roll their own. Designed in the open, manufactured affordably.</p>
+        </div>
+      </div>
+      <div class="pillar-row">
+        <span class="pillar-icon">🌱</span>
+        <div class="pillar-text">
+          <h3>Smart Sprout <span class="badge-soon">In Development</span></h3>
+          <p>Nature-inspired interactive sculptures that respond to touch, sound, and presence. Living light, rooted in the wild.</p>
+        </div>
+      </div>
+      <div class="pillar-row">
+        <span class="pillar-icon">🌀</span>
+        <div class="pillar-text">
+          <h3>Flow Toys <span class="badge-soon">In Development</span></h3>
+          <p>Luminous props built for the art of movement — poi, staffs, and beyond. Weighted for flow, lit for the dark.</p>
         </div>
       </div>
     </div>

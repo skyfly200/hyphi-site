@@ -1,0 +1,1330 @@
+{
+  "version": "1.0",
+  "product": "glow-flora",
+  "productName": "Glow Flora",
+  "created": "2026-04-02",
+  "coordinateSpace": {
+    "units": "meters",
+    "yUp": true
+  },
+  "strips": [
+    {
+      "id": 0,
+      "name": "Petal Ring A",
+      "type": "WS2812B",
+      "count": 24,
+      "colorOrder": "GRB",
+      "maxCurrent_mA": 1440,
+      "dataPin": 5,
+      "group": "petals"
+    },
+    {
+      "id": 1,
+      "name": "Petal Ring B",
+      "type": "WS2812B",
+      "count": 24,
+      "colorOrder": "GRB",
+      "maxCurrent_mA": 1440,
+      "dataPin": 6,
+      "group": "petals"
+    }
+  ],
+  "leds": [
+    {
+      "id": 0,
+      "stripId": 0,
+      "indexInStrip": 0,
+      "position": [
+        0.0363,
+        0.1969,
+        0
+      ],
+      "normal": [
+        0.7409,
+        0.6716,
+        0
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-0",
+      "tags": [
+        "petal",
+        "ring-a",
+        "strip-0"
+      ]
+    },
+    {
+      "id": 1,
+      "stripId": 0,
+      "indexInStrip": 1,
+      "position": [
+        0.0673,
+        0.2114,
+        0
+      ],
+      "normal": [
+        0.7409,
+        0.6716,
+        0
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-0",
+      "tags": [
+        "petal",
+        "ring-a",
+        "strip-0"
+      ]
+    },
+    {
+      "id": 2,
+      "stripId": 0,
+      "indexInStrip": 2,
+      "position": [
+        0.0984,
+        0.2259,
+        0
+      ],
+      "normal": [
+        0.7409,
+        0.6716,
+        0
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-0",
+      "tags": [
+        "petal",
+        "ring-a",
+        "strip-0"
+      ]
+    },
+    {
+      "id": 3,
+      "stripId": 0,
+      "indexInStrip": 3,
+      "position": [
+        0.1295,
+        0.2404,
+        0
+      ],
+      "normal": [
+        0.7409,
+        0.6716,
+        0
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-0",
+      "tags": [
+        "petal",
+        "ring-a",
+        "strip-0"
+      ]
+    },
+    {
+      "id": 4,
+      "stripId": 0,
+      "indexInStrip": 4,
+      "position": [
+        0.1605,
+        0.2549,
+        0
+      ],
+      "normal": [
+        0.7409,
+        0.6716,
+        0
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-0",
+      "tags": [
+        "petal",
+        "ring-a",
+        "strip-0"
+      ]
+    },
+    {
+      "id": 5,
+      "stripId": 0,
+      "indexInStrip": 5,
+      "position": [
+        0.1916,
+        0.2694,
+        0
+      ],
+      "normal": [
+        0.7409,
+        0.6716,
+        0
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-0",
+      "tags": [
+        "petal",
+        "ring-a",
+        "strip-0"
+      ]
+    },
+    {
+      "id": 6,
+      "stripId": 0,
+      "indexInStrip": 6,
+      "position": [
+        0.2227,
+        0.2838,
+        0
+      ],
+      "normal": [
+        0.7409,
+        0.6716,
+        0
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-0",
+      "tags": [
+        "petal",
+        "ring-a",
+        "strip-0"
+      ]
+    },
+    {
+      "id": 7,
+      "stripId": 0,
+      "indexInStrip": 7,
+      "position": [
+        0.2538,
+        0.2983,
+        0
+      ],
+      "normal": [
+        0.7409,
+        0.6716,
+        0
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-0",
+      "tags": [
+        "petal",
+        "ring-a",
+        "strip-0"
+      ]
+    },
+    {
+      "id": 8,
+      "stripId": 0,
+      "indexInStrip": 8,
+      "position": [
+        0.0181,
+        0.1969,
+        0.0314
+      ],
+      "normal": [
+        0.3705,
+        0.6716,
+        0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-1",
+      "tags": [
+        "petal",
+        "ring-a",
+        "strip-0"
+      ]
+    },
+    {
+      "id": 9,
+      "stripId": 0,
+      "indexInStrip": 9,
+      "position": [
+        0.0337,
+        0.2114,
+        0.0583
+      ],
+      "normal": [
+        0.3705,
+        0.6716,
+        0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-1",
+      "tags": [
+        "petal",
+        "ring-a",
+        "strip-0"
+      ]
+    },
+    {
+      "id": 10,
+      "stripId": 0,
+      "indexInStrip": 10,
+      "position": [
+        0.0492,
+        0.2259,
+        0.0852
+      ],
+      "normal": [
+        0.3705,
+        0.6716,
+        0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-1",
+      "tags": [
+        "petal",
+        "ring-a",
+        "strip-0"
+      ]
+    },
+    {
+      "id": 11,
+      "stripId": 0,
+      "indexInStrip": 11,
+      "position": [
+        0.0647,
+        0.2404,
+        0.1121
+      ],
+      "normal": [
+        0.3705,
+        0.6716,
+        0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-1",
+      "tags": [
+        "petal",
+        "ring-a",
+        "strip-0"
+      ]
+    },
+    {
+      "id": 12,
+      "stripId": 0,
+      "indexInStrip": 12,
+      "position": [
+        0.0803,
+        0.2549,
+        0.139
+      ],
+      "normal": [
+        0.3705,
+        0.6716,
+        0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-1",
+      "tags": [
+        "petal",
+        "ring-a",
+        "strip-0"
+      ]
+    },
+    {
+      "id": 13,
+      "stripId": 0,
+      "indexInStrip": 13,
+      "position": [
+        0.0958,
+        0.2694,
+        0.1659
+      ],
+      "normal": [
+        0.3705,
+        0.6716,
+        0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-1",
+      "tags": [
+        "petal",
+        "ring-a",
+        "strip-0"
+      ]
+    },
+    {
+      "id": 14,
+      "stripId": 0,
+      "indexInStrip": 14,
+      "position": [
+        0.1113,
+        0.2838,
+        0.1929
+      ],
+      "normal": [
+        0.3705,
+        0.6716,
+        0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-1",
+      "tags": [
+        "petal",
+        "ring-a",
+        "strip-0"
+      ]
+    },
+    {
+      "id": 15,
+      "stripId": 0,
+      "indexInStrip": 15,
+      "position": [
+        0.1269,
+        0.2983,
+        0.2198
+      ],
+      "normal": [
+        0.3705,
+        0.6716,
+        0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-1",
+      "tags": [
+        "petal",
+        "ring-a",
+        "strip-0"
+      ]
+    },
+    {
+      "id": 16,
+      "stripId": 0,
+      "indexInStrip": 16,
+      "position": [
+        -0.0181,
+        0.1969,
+        0.0314
+      ],
+      "normal": [
+        -0.3705,
+        0.6716,
+        0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-2",
+      "tags": [
+        "petal",
+        "ring-a",
+        "strip-0"
+      ]
+    },
+    {
+      "id": 17,
+      "stripId": 0,
+      "indexInStrip": 17,
+      "position": [
+        -0.0337,
+        0.2114,
+        0.0583
+      ],
+      "normal": [
+        -0.3705,
+        0.6716,
+        0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-2",
+      "tags": [
+        "petal",
+        "ring-a",
+        "strip-0"
+      ]
+    },
+    {
+      "id": 18,
+      "stripId": 0,
+      "indexInStrip": 18,
+      "position": [
+        -0.0492,
+        0.2259,
+        0.0852
+      ],
+      "normal": [
+        -0.3705,
+        0.6716,
+        0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-2",
+      "tags": [
+        "petal",
+        "ring-a",
+        "strip-0"
+      ]
+    },
+    {
+      "id": 19,
+      "stripId": 0,
+      "indexInStrip": 19,
+      "position": [
+        -0.0647,
+        0.2404,
+        0.1121
+      ],
+      "normal": [
+        -0.3705,
+        0.6716,
+        0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-2",
+      "tags": [
+        "petal",
+        "ring-a",
+        "strip-0"
+      ]
+    },
+    {
+      "id": 20,
+      "stripId": 0,
+      "indexInStrip": 20,
+      "position": [
+        -0.0803,
+        0.2549,
+        0.139
+      ],
+      "normal": [
+        -0.3705,
+        0.6716,
+        0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-2",
+      "tags": [
+        "petal",
+        "ring-a",
+        "strip-0"
+      ]
+    },
+    {
+      "id": 21,
+      "stripId": 0,
+      "indexInStrip": 21,
+      "position": [
+        -0.0958,
+        0.2694,
+        0.1659
+      ],
+      "normal": [
+        -0.3705,
+        0.6716,
+        0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-2",
+      "tags": [
+        "petal",
+        "ring-a",
+        "strip-0"
+      ]
+    },
+    {
+      "id": 22,
+      "stripId": 0,
+      "indexInStrip": 22,
+      "position": [
+        -0.1113,
+        0.2838,
+        0.1929
+      ],
+      "normal": [
+        -0.3705,
+        0.6716,
+        0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-2",
+      "tags": [
+        "petal",
+        "ring-a",
+        "strip-0"
+      ]
+    },
+    {
+      "id": 23,
+      "stripId": 0,
+      "indexInStrip": 23,
+      "position": [
+        -0.1269,
+        0.2983,
+        0.2198
+      ],
+      "normal": [
+        -0.3705,
+        0.6716,
+        0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-2",
+      "tags": [
+        "petal",
+        "ring-a",
+        "strip-0"
+      ]
+    },
+    {
+      "id": 24,
+      "stripId": 1,
+      "indexInStrip": 0,
+      "position": [
+        -0.0363,
+        0.1969,
+        0
+      ],
+      "normal": [
+        -0.7409,
+        0.6716,
+        0
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-3",
+      "tags": [
+        "petal",
+        "ring-b",
+        "strip-1"
+      ]
+    },
+    {
+      "id": 25,
+      "stripId": 1,
+      "indexInStrip": 1,
+      "position": [
+        -0.0673,
+        0.2114,
+        0
+      ],
+      "normal": [
+        -0.7409,
+        0.6716,
+        0
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-3",
+      "tags": [
+        "petal",
+        "ring-b",
+        "strip-1"
+      ]
+    },
+    {
+      "id": 26,
+      "stripId": 1,
+      "indexInStrip": 2,
+      "position": [
+        -0.0984,
+        0.2259,
+        0
+      ],
+      "normal": [
+        -0.7409,
+        0.6716,
+        0
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-3",
+      "tags": [
+        "petal",
+        "ring-b",
+        "strip-1"
+      ]
+    },
+    {
+      "id": 27,
+      "stripId": 1,
+      "indexInStrip": 3,
+      "position": [
+        -0.1295,
+        0.2404,
+        0
+      ],
+      "normal": [
+        -0.7409,
+        0.6716,
+        0
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-3",
+      "tags": [
+        "petal",
+        "ring-b",
+        "strip-1"
+      ]
+    },
+    {
+      "id": 28,
+      "stripId": 1,
+      "indexInStrip": 4,
+      "position": [
+        -0.1605,
+        0.2549,
+        0
+      ],
+      "normal": [
+        -0.7409,
+        0.6716,
+        0
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-3",
+      "tags": [
+        "petal",
+        "ring-b",
+        "strip-1"
+      ]
+    },
+    {
+      "id": 29,
+      "stripId": 1,
+      "indexInStrip": 5,
+      "position": [
+        -0.1916,
+        0.2694,
+        0
+      ],
+      "normal": [
+        -0.7409,
+        0.6716,
+        0
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-3",
+      "tags": [
+        "petal",
+        "ring-b",
+        "strip-1"
+      ]
+    },
+    {
+      "id": 30,
+      "stripId": 1,
+      "indexInStrip": 6,
+      "position": [
+        -0.2227,
+        0.2838,
+        0
+      ],
+      "normal": [
+        -0.7409,
+        0.6716,
+        0
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-3",
+      "tags": [
+        "petal",
+        "ring-b",
+        "strip-1"
+      ]
+    },
+    {
+      "id": 31,
+      "stripId": 1,
+      "indexInStrip": 7,
+      "position": [
+        -0.2538,
+        0.2983,
+        0
+      ],
+      "normal": [
+        -0.7409,
+        0.6716,
+        0
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-3",
+      "tags": [
+        "petal",
+        "ring-b",
+        "strip-1"
+      ]
+    },
+    {
+      "id": 32,
+      "stripId": 1,
+      "indexInStrip": 8,
+      "position": [
+        -0.0181,
+        0.1969,
+        -0.0314
+      ],
+      "normal": [
+        -0.3705,
+        0.6716,
+        -0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-4",
+      "tags": [
+        "petal",
+        "ring-b",
+        "strip-1"
+      ]
+    },
+    {
+      "id": 33,
+      "stripId": 1,
+      "indexInStrip": 9,
+      "position": [
+        -0.0337,
+        0.2114,
+        -0.0583
+      ],
+      "normal": [
+        -0.3705,
+        0.6716,
+        -0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-4",
+      "tags": [
+        "petal",
+        "ring-b",
+        "strip-1"
+      ]
+    },
+    {
+      "id": 34,
+      "stripId": 1,
+      "indexInStrip": 10,
+      "position": [
+        -0.0492,
+        0.2259,
+        -0.0852
+      ],
+      "normal": [
+        -0.3705,
+        0.6716,
+        -0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-4",
+      "tags": [
+        "petal",
+        "ring-b",
+        "strip-1"
+      ]
+    },
+    {
+      "id": 35,
+      "stripId": 1,
+      "indexInStrip": 11,
+      "position": [
+        -0.0647,
+        0.2404,
+        -0.1121
+      ],
+      "normal": [
+        -0.3705,
+        0.6716,
+        -0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-4",
+      "tags": [
+        "petal",
+        "ring-b",
+        "strip-1"
+      ]
+    },
+    {
+      "id": 36,
+      "stripId": 1,
+      "indexInStrip": 12,
+      "position": [
+        -0.0803,
+        0.2549,
+        -0.139
+      ],
+      "normal": [
+        -0.3705,
+        0.6716,
+        -0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-4",
+      "tags": [
+        "petal",
+        "ring-b",
+        "strip-1"
+      ]
+    },
+    {
+      "id": 37,
+      "stripId": 1,
+      "indexInStrip": 13,
+      "position": [
+        -0.0958,
+        0.2694,
+        -0.1659
+      ],
+      "normal": [
+        -0.3705,
+        0.6716,
+        -0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-4",
+      "tags": [
+        "petal",
+        "ring-b",
+        "strip-1"
+      ]
+    },
+    {
+      "id": 38,
+      "stripId": 1,
+      "indexInStrip": 14,
+      "position": [
+        -0.1113,
+        0.2838,
+        -0.1929
+      ],
+      "normal": [
+        -0.3705,
+        0.6716,
+        -0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-4",
+      "tags": [
+        "petal",
+        "ring-b",
+        "strip-1"
+      ]
+    },
+    {
+      "id": 39,
+      "stripId": 1,
+      "indexInStrip": 15,
+      "position": [
+        -0.1269,
+        0.2983,
+        -0.2198
+      ],
+      "normal": [
+        -0.3705,
+        0.6716,
+        -0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-4",
+      "tags": [
+        "petal",
+        "ring-b",
+        "strip-1"
+      ]
+    },
+    {
+      "id": 40,
+      "stripId": 1,
+      "indexInStrip": 16,
+      "position": [
+        0.0181,
+        0.1969,
+        -0.0314
+      ],
+      "normal": [
+        0.3705,
+        0.6716,
+        -0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-5",
+      "tags": [
+        "petal",
+        "ring-b",
+        "strip-1"
+      ]
+    },
+    {
+      "id": 41,
+      "stripId": 1,
+      "indexInStrip": 17,
+      "position": [
+        0.0337,
+        0.2114,
+        -0.0583
+      ],
+      "normal": [
+        0.3705,
+        0.6716,
+        -0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-5",
+      "tags": [
+        "petal",
+        "ring-b",
+        "strip-1"
+      ]
+    },
+    {
+      "id": 42,
+      "stripId": 1,
+      "indexInStrip": 18,
+      "position": [
+        0.0492,
+        0.2259,
+        -0.0852
+      ],
+      "normal": [
+        0.3705,
+        0.6716,
+        -0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-5",
+      "tags": [
+        "petal",
+        "ring-b",
+        "strip-1"
+      ]
+    },
+    {
+      "id": 43,
+      "stripId": 1,
+      "indexInStrip": 19,
+      "position": [
+        0.0647,
+        0.2404,
+        -0.1121
+      ],
+      "normal": [
+        0.3705,
+        0.6716,
+        -0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-5",
+      "tags": [
+        "petal",
+        "ring-b",
+        "strip-1"
+      ]
+    },
+    {
+      "id": 44,
+      "stripId": 1,
+      "indexInStrip": 20,
+      "position": [
+        0.0803,
+        0.2549,
+        -0.139
+      ],
+      "normal": [
+        0.3705,
+        0.6716,
+        -0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-5",
+      "tags": [
+        "petal",
+        "ring-b",
+        "strip-1"
+      ]
+    },
+    {
+      "id": 45,
+      "stripId": 1,
+      "indexInStrip": 21,
+      "position": [
+        0.0958,
+        0.2694,
+        -0.1659
+      ],
+      "normal": [
+        0.3705,
+        0.6716,
+        -0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-5",
+      "tags": [
+        "petal",
+        "ring-b",
+        "strip-1"
+      ]
+    },
+    {
+      "id": 46,
+      "stripId": 1,
+      "indexInStrip": 22,
+      "position": [
+        0.1113,
+        0.2838,
+        -0.1929
+      ],
+      "normal": [
+        0.3705,
+        0.6716,
+        -0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-5",
+      "tags": [
+        "petal",
+        "ring-b",
+        "strip-1"
+      ]
+    },
+    {
+      "id": 47,
+      "stripId": 1,
+      "indexInStrip": 23,
+      "position": [
+        0.1269,
+        0.2983,
+        -0.2198
+      ],
+      "normal": [
+        0.3705,
+        0.6716,
+        -0.6417
+      ],
+      "defaultBrightness": 1,
+      "defaultColor": [
+        255,
+        80,
+        10
+      ],
+      "group": "petal-5",
+      "tags": [
+        "petal",
+        "ring-b",
+        "strip-1"
+      ]
+    }
+  ]
+}

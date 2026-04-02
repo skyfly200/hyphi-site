@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E33048QPGB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-E33048QPGB');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glow Flora — Hyphi Living Light</title>
+  <meta name="description" content="Organic LED blooms. Battery-powered, endlessly programmable, OWLS-synced. A tabletop sculpture that is alive with light." />
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/product.css">
+
+  <!-- Three.js r160 via importmap — no build step required -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three":          "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/":  "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────────────────────────────── -->
+<nav>
+  <a href="../index.html" class="nav-logo">
+    <!-- Orb (mini) -->
+    <svg width="28" height="28" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <radialGradient id="og1" cx="50%" cy="40%" r="55%">
+          <stop offset="0%"   stop-color="#ff6b35" stop-opacity="0.9"/>
+          <stop offset="60%"  stop-color="#7b5cfa" stop-opacity="0.7"/>
+          <stop offset="100%" stop-color="#0a0a0f" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <circle cx="30" cy="30" r="28" fill="url(#og1)"/>
+      <circle cx="30" cy="30" r="20" fill="none" stroke="rgba(123,92,250,0.35)" stroke-width="0.8"/>
+      <circle cx="30" cy="30" r="13" fill="none" stroke="rgba(255,107,53,0.3)"  stroke-width="0.6"/>
+    </svg>
+    <span class="nav-wordmark">Hyphi</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="../index.html#about">Products</a></li>
+    <li><a href="../index.html#open-source">Ethos</a></li>
+    <li><a href="https://wiki.hyphi.art" target="_blank" rel="noopener">Wiki</a></li>
+    <li><a href="https://hub.hyphi.art"  target="_blank" rel="noopener">Hub</a></li>
+  </ul>
+
+  <a href="../index.html" class="nav-back">
+    <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8.5 2L3.5 7L8.5 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    All Products
+  </a>
+</nav>
+
+<!-- ── PRODUCT LAYOUT ───────────────────────────────────────────────────────── -->
+<div class="product-layout">
+
+  <!-- Sticky 3D viewer — stays fixed while scroll-driver scrolls past -->
+  <div class="viewer-stage">
+    <div id="product-canvas"></div>
+    <div id="product-tags" aria-hidden="true"></div>
+
+    <!-- Loading overlay -->
+    <div class="viewer-loading">
+      <div class="loading-ring"></div>
+      <span class="loading-label">Loading Glow Flora</span>
+    </div>
+
+    <!-- Phase progress dots (left side) -->
+    <div class="phase-progress" aria-hidden="true">
+      <div class="phase-dot active" title="Intro"></div>
+      <div class="phase-dot" title="Overview"></div>
+      <div class="phase-dot" title="LEDs"></div>
+      <div class="phase-dot" title="Form"></div>
+      <div class="phase-dot" title="Internals"></div>
+      <div class="phase-dot" title="Exploded"></div>
+      <div class="phase-dot" title="LED Map"></div>
+      <div class="phase-dot" title="Get Yours"></div>
+    </div>
+
+    <!-- Scroll hint (fades after first scroll) -->
+    <div class="scroll-hint">
+      <span class="scroll-hint-label">Scroll to explore</span>
+      <div class="scroll-hint-arrow"></div>
+    </div>
+  </div><!-- /viewer-stage -->
+
+  <!-- Scroll driver — provides the scroll height that drives the 3D sequence.
+       Content panels are absolutely positioned inside so they appear at the
+       right time as the user scrolls. -->
+  <div class="scroll-driver">
+
+    <!-- Phase: hero (0–8%) — no content panel, just the viewer -->
+
+    <!-- Phase: overview (8–20%) -->
+    <div class="scroll-content-panel" data-phase="overview" style="top:0">
+      <span class="panel-eyebrow">Introducing</span>
+      <h1 class="panel-heading">Glow Flora</h1>
+      <p class="panel-body">
+        An organic LED sculpture that turns any surface into a living light source.
+        Battery-powered and endlessly programmable — from a single tabletop bloom
+        to an installation of hundreds, all in sync.
+      </p>
+    </div>
+
+    <!-- Phase: leds (20–36%) -->
+    <div class="scroll-content-panel" data-phase="leds" style="top:0">
+      <span class="panel-eyebrow">Illumination</span>
+      <h2 class="panel-heading">48 Individually Addressable LEDs</h2>
+      <p class="panel-body">
+        Six silicone petals, each carrying a flex WS2812B strip with 8 LEDs.
+        Two independent channels let you mirror, chase, or counterpoint patterns
+        across any petal pair.
+      </p>
+      <div class="panel-specs">
+        <div class="spec-row">
+          <span class="spec-key">LED type</span>
+          <span class="spec-val">WS2812B</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Total LEDs</span>
+          <span class="spec-val">48 · 6 petals × 8</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Channels</span>
+          <span class="spec-val">2 × 24 LEDs</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Sync</span>
+          <span class="spec-val">OWLS · Wi-Fi · BLE</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase: form (36–50%) -->
+    <div class="scroll-content-panel" data-phase="form" style="top:0">
+      <span class="panel-eyebrow">Design</span>
+      <h2 class="panel-heading">Organic by Design</h2>
+      <p class="panel-body">
+        Custom-molded silicone petals diffuse light with a soft, living quality.
+        The poseable anodized stem holds any angle. A capacitive touch ring on
+        the base controls brightness — no app required.
+      </p>
+      <div class="panel-specs">
+        <div class="spec-row">
+          <span class="spec-key">Height</span>
+          <span class="spec-val">28 cm</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Petals</span>
+          <span class="spec-val">Translucent silicone · IP44</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Stem</span>
+          <span class="spec-val">Anodized aluminium · poseable</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Control</span>
+          <span class="spec-val">Capacitive touch ring</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase: explode-intro (50–62%) — no text panel -->
+
+    <!-- Phase: exploded (62–78%) -->
+    <div class="scroll-content-panel" data-phase="exploded" style="top:0">
+      <span class="panel-eyebrow">Inside</span>
+      <h2 class="panel-heading">Every Part Has a Purpose</h2>
+      <p class="panel-body">
+        Designed to be repaired, not replaced. Every component is documented,
+        replaceable, and available as a spare. Because good light deserves
+        a long life.
+      </p>
+    </div>
+
+    <!-- Phase: led-map (78–88%) -->
+    <div class="scroll-content-panel" data-phase="led-map" style="top:0">
+      <span class="panel-eyebrow">Open Hardware</span>
+      <h2 class="panel-heading">LED Map — Machine-Readable</h2>
+      <p class="panel-body">
+        Every LED's 3D position, strip index, and orientation is published as
+        an open JSON file. The same data feeds the product viewer, Hyphi Hub
+        animations, and your own firmware.
+      </p>
+      <div class="panel-specs">
+        <div class="spec-row">
+          <span class="spec-key">Format</span>
+          <span class="spec-val">led-data-v1.json</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Strip A</span>
+          <span class="spec-val">24 LEDs · GPIO 5</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Strip B</span>
+          <span class="spec-val">24 LEDs · GPIO 6</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">License</span>
+          <span class="spec-val">MIT</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase: cta (88–100%) — handled by after-scroll section below -->
+
+  </div><!-- /scroll-driver -->
+
+</div><!-- /product-layout -->
+
+<!-- ── AFTER-SCROLL SECTIONS ────────────────────────────────────────────────── -->
+<div class="product-sections">
+
+  <!-- Full Specs Grid -->
+  <section class="section-specs">
+    <div class="specs-inner">
+      <span class="section-label">Full Specifications</span>
+      <div class="specs-grid">
+        <div class="spec-cell">
+          <span class="spec-cell-key">LEDs</span>
+          <div class="spec-cell-val">48</div>
+          <div class="spec-cell-sub">WS2812B · 6 petals</div>
+        </div>
+        <div class="spec-cell">
+          <span class="spec-cell-key">Battery</span>
+          <div class="spec-cell-val">3000mAh</div>
+          <div class="spec-cell-sub">18650 Li-ion · 8h runtime</div>
+        </div>
+        <div class="spec-cell">
+          <span class="spec-cell-key">Charging</span>
+          <div class="spec-cell-val">USB-C</div>
+          <div class="spec-cell-sub">PD 9W · 2.5h full charge</div>
+        </div>
+        <div class="spec-cell">
+          <span class="spec-cell-key">MCU</span>
+          <div class="spec-cell-val">ESP32-S3</div>
+          <div class="spec-cell-sub">Wi-Fi 4 · BLE 5 · OTA</div>
+        </div>
+        <div class="spec-cell">
+          <span class="spec-cell-key">Protocol</span>
+          <div class="spec-cell-val">OWLS</div>
+          <div class="spec-cell-sub">Open wireless sync · hardware-agnostic</div>
+        </div>
+        <div class="spec-cell">
+          <span class="spec-cell-key">Rating</span>
+          <div class="spec-cell-val">IP44</div>
+          <div class="spec-cell-sub">Splash-proof petals</div>
+        </div>
+        <div class="spec-cell">
+          <span class="spec-cell-key">Height</span>
+          <div class="spec-cell-val">28 cm</div>
+          <div class="spec-cell-sub">Poseable stem</div>
+        </div>
+        <div class="spec-cell">
+          <span class="spec-cell-key">Firmware</span>
+          <div class="spec-cell-val">Open Source</div>
+          <div class="spec-cell-sub">MIT · GitHub</div>
+        </div>
+        <div class="spec-cell">
+          <span class="spec-cell-key">Control</span>
+          <div class="spec-cell-val">Touch + App</div>
+          <div class="spec-cell-sub">Capacitive ring · Hyphi Hub</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Open Source callout -->
+  <section class="section-open-source">
+    <div class="oss-inner">
+      <!-- OSI keyhole icon -->
+      <svg class="oss-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="48" stroke="#3dffc0" stroke-width="3"/>
+        <path d="M50 20C34.536 20 22 32.536 22 48C22 58.8 28.24 68.16 37.36 73.04L42 54H35L50 18L65 54H58L62.64 73.04C71.76 68.16 78 58.8 78 48C78 32.536 65.464 20 50 20Z" fill="#3dffc0" fill-opacity="0.8"/>
+        <circle cx="50" cy="48" r="10" fill="#0a0a0f"/>
+        <circle cx="50" cy="48" r="6" fill="#3dffc0" fill-opacity="0.6"/>
+      </svg>
+      <div>
+        <div class="oss-heading">Open Hardware &amp; Firmware</div>
+        <p class="oss-body">
+          Schematics, firmware, LED position data, and 3D models are published
+          under MIT license. Use them to build your own, extend the ecosystem,
+          or just inspect what's inside. The OWLS sync protocol is an open
+          standard — any hardware can implement it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CTA -->
+  <section class="section-cta">
+    <span class="cta-eyebrow">Coming Soon</span>
+    <h2 class="cta-heading">Be the First to Glow</h2>
+    <p class="cta-sub">
+      Glow Flora is in final production. Join the list to get notified
+      when pre-orders open — and get early access pricing.
+    </p>
+    <div>
+      <a href="../index.html#signup" class="btn-primary">Join the List</a>
+      <a href="https://wiki.hyphi.art/glowflora/home" target="_blank" rel="noopener" class="btn-outline">Read the Docs</a>
+    </div>
+  </section>
+
+</div><!-- /product-sections -->
+
+<!-- ── INIT SCRIPT ───────────────────────────────────────────────────────────── -->
+<script type="module">
+  import { ProductViewer } from '../js/viewer/ProductViewer.js';
+
+  const canvasEl   = document.getElementById('product-canvas');
+  const tagsEl     = document.getElementById('product-tags');
+  const driverEl   = document.querySelector('.scroll-driver');
+  const panels     = [...document.querySelectorAll('.scroll-content-panel')];
+  const phaseDots  = [...document.querySelectorAll('.phase-dot')];
+
+  const viewer = new ProductViewer(canvasEl, tagsEl, driverEl, panels, phaseDots);
+
+  viewer.load(
+    '../data/glow-flora/assembly.json',
+    '../data/glow-flora/leds.json'
+  );
+
+  // Expose globally for debugging / Hyphi Hub integration
+  window.__hyphi_viewer = viewer;
+
+  /*
+   * Live swap examples (call from browser console or Hyphi Hub):
+   *
+   *   __hyphi_viewer.swapModel('petal-0', '/custom-petal.glb')
+   *   __hyphi_viewer.swapTexture('base', '/colours/matte-black.webp', 'map')
+   */
+</script>
+
+</body>
+</html>

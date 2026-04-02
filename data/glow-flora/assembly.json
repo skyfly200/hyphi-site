@@ -1,0 +1,349 @@
+{
+  "version": "1.0",
+  "product": "glow-flora",
+  "name": "Glow Flora",
+  "tagline": "Organic LED blooms for any space",
+  "description": "Battery-powered luminescent sculptures. Endlessly programmable.",
+  "coordinateSpace": { "units": "meters", "yUp": true },
+
+  "parts": [
+    {
+      "id": "base",
+      "name": "Housing Base",
+      "description": "CNC-machined aluminum base with USB-C port and on/off touch ring",
+      "model": "models/base.glb",
+      "assembledPosition": [0, 0, 0],
+      "assembledRotation": [0, 0, 0],
+      "explodeOffset": [0, -0.18, 0],
+      "explodeRotation": [0, 0, 0],
+      "explodeOrder": 3,
+      "material": { "color": "#1a1a24", "roughness": 0.35, "metalness": 0.85 }
+    },
+    {
+      "id": "pcb",
+      "name": "Control PCB",
+      "description": "Custom ESP32-S3 board with OWLS wireless sync, 6-channel LED driver",
+      "model": "models/pcb.glb",
+      "assembledPosition": [0, 0.028, 0],
+      "assembledRotation": [0, 0, 0],
+      "explodeOffset": [0, -0.28, 0],
+      "explodeRotation": [0, 0.4, 0],
+      "explodeOrder": 4,
+      "material": { "color": "#1a2e1a", "roughness": 0.8, "metalness": 0.2, "emissive": "#003300", "emissiveIntensity": 0.3 }
+    },
+    {
+      "id": "battery",
+      "name": "Battery Pack",
+      "description": "18650 Li-ion cells, 3000mAh, USB-C PD charging, 8h runtime",
+      "model": "models/battery.glb",
+      "assembledPosition": [0, 0.006, 0],
+      "assembledRotation": [0, 0, 0],
+      "explodeOffset": [0, -0.42, 0],
+      "explodeRotation": [0, 0, 0],
+      "explodeOrder": 5,
+      "material": { "color": "#2a1a0a", "roughness": 0.6, "metalness": 0.4 }
+    },
+    {
+      "id": "stem",
+      "name": "Flex Stem",
+      "description": "Poseable anodized aluminum stem, holds any angle",
+      "model": "models/stem.glb",
+      "assembledPosition": [0, 0.06, 0],
+      "assembledRotation": [0, 0, 0],
+      "explodeOffset": [0, 0.08, 0],
+      "explodeRotation": [0, 0, 0],
+      "explodeOrder": 1,
+      "material": { "color": "#2a2a38", "roughness": 0.4, "metalness": 0.7 }
+    },
+    {
+      "id": "petal-0",
+      "name": "Petal 1",
+      "description": "Translucent silicone petal with embedded WS2812B strip",
+      "model": "models/petal.glb",
+      "assembledPosition": [0, 0.18, 0],
+      "assembledRotation": [0, 0, 0],
+      "explodeOffset": [0.32, 0.12, 0],
+      "explodeRotation": [0.2, 0, 0.15],
+      "explodeOrder": 0,
+      "material": { "color": "#ff6b35", "roughness": 0.5, "metalness": 0, "transparent": true, "opacity": 0.82 }
+    },
+    {
+      "id": "petal-1",
+      "name": "Petal 2",
+      "assembledPosition": [0, 0.18, 0],
+      "assembledRotation": [0, 1.047, 0],
+      "explodeOffset": [0.16, 0.12, 0.28],
+      "explodeRotation": [0.2, 1.047, 0.15],
+      "explodeOrder": 0,
+      "material": { "color": "#ff6b35", "roughness": 0.5, "metalness": 0, "transparent": true, "opacity": 0.82 }
+    },
+    {
+      "id": "petal-2",
+      "name": "Petal 3",
+      "assembledPosition": [0, 0.18, 0],
+      "assembledRotation": [0, 2.094, 0],
+      "explodeOffset": [-0.16, 0.12, 0.28],
+      "explodeRotation": [0.2, 2.094, 0.15],
+      "explodeOrder": 0,
+      "material": { "color": "#ff6b35", "roughness": 0.5, "metalness": 0, "transparent": true, "opacity": 0.82 }
+    },
+    {
+      "id": "petal-3",
+      "name": "Petal 4",
+      "assembledPosition": [0, 0.18, 0],
+      "assembledRotation": [0, 3.14159, 0],
+      "explodeOffset": [-0.32, 0.12, 0],
+      "explodeRotation": [0.2, 3.14159, 0.15],
+      "explodeOrder": 0,
+      "material": { "color": "#7b5cfa", "roughness": 0.5, "metalness": 0, "transparent": true, "opacity": 0.82 }
+    },
+    {
+      "id": "petal-4",
+      "name": "Petal 5",
+      "assembledPosition": [0, 0.18, 0],
+      "assembledRotation": [0, 4.189, 0],
+      "explodeOffset": [-0.16, 0.12, -0.28],
+      "explodeRotation": [0.2, 4.189, 0.15],
+      "explodeOrder": 0,
+      "material": { "color": "#7b5cfa", "roughness": 0.5, "metalness": 0, "transparent": true, "opacity": 0.82 }
+    },
+    {
+      "id": "petal-5",
+      "name": "Petal 6",
+      "assembledPosition": [0, 0.18, 0],
+      "assembledRotation": [0, 5.236, 0],
+      "explodeOffset": [0.16, 0.12, -0.28],
+      "explodeRotation": [0.2, 5.236, 0.15],
+      "explodeOrder": 0,
+      "material": { "color": "#7b5cfa", "roughness": 0.5, "metalness": 0, "transparent": true, "opacity": 0.82 }
+    }
+  ],
+
+  "sequence": [
+    {
+      "id": "hero",
+      "label": "Hero",
+      "progressStart": 0.0,
+      "progressEnd": 0.08,
+      "camera": {
+        "position": [0, 0.28, 0.9],
+        "target": [0, 0.18, 0],
+        "fov": 42
+      },
+      "productRotation": { "autoSpin": true, "speed": 0.4 },
+      "explodeFactor": 0,
+      "ledState": "idle",
+      "tags": []
+    },
+    {
+      "id": "overview",
+      "label": "Overview",
+      "progressStart": 0.08,
+      "progressEnd": 0.2,
+      "camera": {
+        "position": [0, 0.32, 0.75],
+        "target": [0, 0.16, 0],
+        "fov": 40
+      },
+      "productRotation": { "autoSpin": false, "targetY": 0.3 },
+      "explodeFactor": 0,
+      "ledState": "idle",
+      "tags": [
+        {
+          "id": "tag-name",
+          "label": "Glow Flora",
+          "detail": "Organic LED sculpture",
+          "anchorPosition": [0, 0.38, 0],
+          "side": "right"
+        },
+        {
+          "id": "tag-size",
+          "label": "28cm tall",
+          "detail": "Tabletop to floor-standing",
+          "anchorPosition": [0, 0.0, 0],
+          "side": "left"
+        }
+      ]
+    },
+    {
+      "id": "leds",
+      "label": "LEDs",
+      "progressStart": 0.2,
+      "progressEnd": 0.36,
+      "camera": {
+        "position": [0.12, 0.52, 0.48],
+        "target": [0, 0.22, 0],
+        "fov": 38
+      },
+      "productRotation": { "autoSpin": false, "targetY": 0.6 },
+      "explodeFactor": 0,
+      "ledState": "chase",
+      "tags": [
+        {
+          "id": "tag-leds",
+          "label": "48 addressable LEDs",
+          "detail": "WS2812B · 6 petals · 8 per petal",
+          "anchorPosition": [0.18, 0.30, 0.08],
+          "side": "right"
+        },
+        {
+          "id": "tag-owls",
+          "label": "OWLS Sync",
+          "detail": "Wireless sync across unlimited devices",
+          "anchorPosition": [-0.15, 0.26, 0.06],
+          "side": "left"
+        }
+      ]
+    },
+    {
+      "id": "form",
+      "label": "Form",
+      "progressStart": 0.36,
+      "progressEnd": 0.5,
+      "camera": {
+        "position": [0.3, 0.22, 0.52],
+        "target": [0, 0.12, 0],
+        "fov": 44
+      },
+      "productRotation": { "autoSpin": false, "targetY": 1.1 },
+      "explodeFactor": 0,
+      "ledState": "breathe",
+      "tags": [
+        {
+          "id": "tag-silicone",
+          "label": "Silicone petals",
+          "detail": "Custom-molded, IP44 rated, UV stable",
+          "anchorPosition": [0.22, 0.26, 0.1],
+          "side": "right"
+        },
+        {
+          "id": "tag-stem",
+          "label": "Poseable stem",
+          "detail": "Anodized aluminum, holds any angle",
+          "anchorPosition": [0.04, 0.13, 0.04],
+          "side": "right"
+        },
+        {
+          "id": "tag-base",
+          "label": "Touch ring",
+          "detail": "Capacitive on/off + brightness",
+          "anchorPosition": [0.06, 0.01, 0.06],
+          "side": "left"
+        }
+      ]
+    },
+    {
+      "id": "explode-intro",
+      "label": "Inside",
+      "progressStart": 0.5,
+      "progressEnd": 0.62,
+      "camera": {
+        "position": [0.2, 0.45, 0.95],
+        "target": [0, 0.12, 0],
+        "fov": 46
+      },
+      "productRotation": { "autoSpin": false, "targetY": 0.8 },
+      "explodeFactor": 0,
+      "ledState": "off",
+      "tags": []
+    },
+    {
+      "id": "exploded",
+      "label": "Exploded",
+      "progressStart": 0.62,
+      "progressEnd": 0.78,
+      "camera": {
+        "position": [0.28, 0.62, 0.88],
+        "target": [0, 0.08, 0],
+        "fov": 50
+      },
+      "productRotation": { "autoSpin": false, "targetY": 0.5 },
+      "explodeFactor": 1,
+      "ledState": "off",
+      "tags": [
+        {
+          "id": "tag-pcb",
+          "label": "ESP32-S3 Board",
+          "detail": "Wi-Fi + BLE · OWLS protocol · OTA updates",
+          "anchorPosition": [0.06, -0.24, 0.06],
+          "side": "right"
+        },
+        {
+          "id": "tag-battery",
+          "label": "3000mAh",
+          "detail": "18650 Li-ion · USB-C PD · 8h runtime",
+          "anchorPosition": [-0.06, -0.38, 0.0],
+          "side": "left"
+        },
+        {
+          "id": "tag-petal-explode",
+          "label": "6 silicone petals",
+          "detail": "Each embeds a WS2812B flex strip",
+          "anchorPosition": [0.32, 0.28, 0.0],
+          "side": "right"
+        }
+      ]
+    },
+    {
+      "id": "led-map",
+      "label": "LED Map",
+      "progressStart": 0.78,
+      "progressEnd": 0.88,
+      "camera": {
+        "position": [0.05, 0.75, 0.55],
+        "target": [0, 0.08, 0],
+        "fov": 50
+      },
+      "productRotation": { "autoSpin": false, "targetY": 0.5 },
+      "explodeFactor": 1,
+      "ledState": "map",
+      "tags": [
+        {
+          "id": "tag-strip-a",
+          "label": "Strip A  ·  24 LEDs",
+          "detail": "Petals 1–3 · GPIO 5",
+          "anchorPosition": [0.22, 0.3, 0.1],
+          "side": "right"
+        },
+        {
+          "id": "tag-strip-b",
+          "label": "Strip B  ·  24 LEDs",
+          "detail": "Petals 4–6 · GPIO 6",
+          "anchorPosition": [-0.22, 0.3, -0.1],
+          "side": "left"
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "label": "CTA",
+      "progressStart": 0.88,
+      "progressEnd": 1.0,
+      "camera": {
+        "position": [0, 0.3, 0.78],
+        "target": [0, 0.18, 0],
+        "fov": 40
+      },
+      "productRotation": { "autoSpin": true, "speed": 0.25 },
+      "explodeFactor": 0,
+      "ledState": "rainbow",
+      "tags": []
+    }
+  ],
+
+  "packageFormat": {
+    "extension": ".hpkg",
+    "description": "ZIP archive containing manifest.json, models/*.glb, textures/*.webp, leds.json, assembly.json",
+    "compression": "deflate",
+    "manifest": {
+      "version": "1.0",
+      "product": "glow-flora",
+      "files": {
+        "assembly": "assembly.json",
+        "leds": "leds.json",
+        "models": "models/",
+        "textures": "textures/"
+      }
+    }
+  }
+}

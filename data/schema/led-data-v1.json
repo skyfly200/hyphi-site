@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://hyphi.art/schema/led-data-v1.json",
+  "title": "Hyphi LED Data",
+  "description": "Describes the physical layout of addressable LEDs on a Hyphi product. Used by product viewers, Hyphi Hub, and firmware tools.",
+  "version": "1.0",
+  "type": "object",
+  "required": ["version", "product", "strips", "leds"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Schema version",
+      "enum": ["1.0"]
+    },
+    "product": {
+      "type": "string",
+      "description": "Product slug identifier (e.g. 'glow-flora')"
+    },
+    "productName": {
+      "type": "string",
+      "description": "Human-readable product name"
+    },
+    "created": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 date this file was generated"
+    },
+    "coordinateSpace": {
+      "type": "object",
+      "description": "Defines the coordinate system. Origin is the product's physical center-bottom.",
+      "properties": {
+        "units": { "type": "string", "enum": ["meters", "cm", "mm"], "default": "meters" },
+        "yUp": { "type": "boolean", "default": true, "description": "Y is the up axis (Three.js convention)" }
+      }
+    },
+    "strips": {
+      "type": "array",
+      "description": "Physical LED strip definitions",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "type", "count"],
+        "properties": {
+          "id": { "type": "integer", "description": "Zero-based strip index, matches firmware channel" },
+          "name": { "type": "string" },
+          "type": { "type": "string", "enum": ["WS2812B", "SK6812", "APA102", "WS2811", "SK9822"] },
+          "count": { "type": "integer", "description": "Number of LEDs on this strip" },
+          "colorOrder": { "type": "string", "enum": ["RGB", "GRB", "BGR", "RGBW"], "default": "GRB" },
+          "maxCurrent_mA": { "type": "number", "description": "Max current draw at full white, all LEDs" },
+          "dataPin": { "type": "integer", "description": "MCU GPIO pin number" },
+          "group": { "type": "string", "description": "Logical group name for this strip (e.g. 'petals', 'base')" }
+        }
+      }
+    },
+    "leds": {
+      "type": "array",
+      "description": "Per-LED physical position and metadata",
+      "items": {
+        "type": "object",
+        "required": ["id", "stripId", "indexInStrip", "position", "normal"],
+        "properties": {
+          "id": { "type": "integer", "description": "Global zero-based LED index across all strips" },
+          "stripId": { "type": "integer", "description": "Which strip this LED belongs to" },
+          "indexInStrip": { "type": "integer", "description": "Zero-based index within the strip (matches firmware pixel index)" },
+          "position": {
+            "type": "array",
+            "items": { "type": "number" },
+            "minItems": 3,
+            "maxItems": 3,
+            "description": "[x, y, z] position in product coordinate space"
+          },
+          "normal": {
+            "type": "array",
+            "items": { "type": "number" },
+            "minItems": 3,
+            "maxItems": 3,
+            "description": "Unit vector indicating which direction the LED faces/emits"
+          },
+          "defaultBrightness": { "type": "number", "minimum": 0, "maximum": 1, "default": 1.0 },
+          "defaultColor": {
+            "type": "array",
+            "items": { "type": "integer", "minimum": 0, "maximum": 255 },
+            "minItems": 3,
+            "maxItems": 4,
+            "description": "[R, G, B] or [R, G, B, W] default color"
+          },
+          "group": { "type": "string", "description": "Logical group this LED belongs to (e.g. 'petal-0', 'ring-a')" },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Arbitrary tags for filtering/selection in hub and viewer"
+          }
+        }
+      }
+    }
+  }
+}

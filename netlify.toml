@@ -1,13 +1,16 @@
 [build]
   publish = "."
+  command = ""
 
-# Branch deploy previews — each push to any branch gets a preview URL
+# Branch deploy previews
 [context.branch-deploy]
   publish = "."
+  command = ""
 
 # Production (main branch)
 [context.production]
   publish = "."
+  command = ""
 
 # Redirect /w/* shortlinks to the wiki
 [[redirects]]

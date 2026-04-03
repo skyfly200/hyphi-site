@@ -1,0 +1,54 @@
+[build]
+  publish = "."
+
+# Branch deploy previews — each push to any branch gets a preview URL
+[context.branch-deploy]
+  publish = "."
+
+# Production (main branch)
+[context.production]
+  publish = "."
+
+# Redirect /w/* shortlinks to the wiki
+[[redirects]]
+  from   = "/w/gfhome"
+  to     = "https://wiki.hyphi.art/glowflora/home"
+  status = 301
+
+[[redirects]]
+  from   = "/w/clip"
+  to     = "https://wiki.hyphi.art/glowflora/clip"
+  status = 301
+
+[[redirects]]
+  from   = "/w/sprout"
+  to     = "https://wiki.hyphi.art/sprout/"
+  status = 301
+
+# SPA-style fallback for product pages
+[[redirects]]
+  from   = "/products/*"
+  to     = "/products/:splat"
+  status = 200
+
+[[headers]]
+  for = "/*.glb"
+  [headers.values]
+    Content-Type  = "model/gltf-binary"
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.hpkg"
+  [headers.values]
+    Content-Type  = "application/zip"
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"

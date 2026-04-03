@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hyphi · .hpkg Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <script type="importmap">
+  {
+    "imports": {
+      "three":          "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/":  "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/",
+      "jszip":          "https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"
+    }
+  }
+  </script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0a0a0f;--surface:#111118;--panel:#16161f;--border:#2a2a3a;
+      --muted:#3a3a50;--text:#e8e8f0;--sub:#7a7a9a;
+      --accent:#ff6b35;--accent2:#7b5cfa;
+      --glow:rgba(255,107,53,.18);--ok:#3dffc0;--warn:#f5c518;
+    }
+    html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:300}
+    /* ── layout ── */
+    .app{display:grid;grid-template-columns:300px 1fr 300px;grid-template-rows:48px 1fr;height:100vh}
+    header{grid-column:1/-1;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 1.4rem;gap:1.2rem}
+    .logo{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.12em;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .logo-sep{color:var(--border);font-size:1.2rem}
+    .title{font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sub)}
+    .sidebar{background:var(--surface);border-right:1px solid var(--border);overflow-y:auto;padding:1.2rem}
+    .sidebar-right{border-right:none;border-left:1px solid var(--border)}
+    .centre{display:flex;flex-direction:column;background:var(--bg);position:relative}
+    /* ── sections ── */
+    .sec-label{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:.7rem;display:block}
+    .section{margin-bottom:1.4rem}
+    /* ── drop zones ── */
+    .drop-zone{border:1px dashed var(--border);border-radius:4px;padding:.8rem .9rem;cursor:pointer;transition:border-color .25s,background .25s;text-align:center}
+    .drop-zone:hover,.drop-zone.over{border-color:var(--accent);background:rgba(255,107,53,.06)}
+    .drop-zone.loaded{border-color:var(--ok);border-style:solid}
+    .drop-zone-label{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--sub);display:block;margin-bottom:.3rem}
+    .drop-zone-name{font-size:.8rem;color:var(--text);word-break:break-all}
+    .drop-zone-hint{font-size:.7rem;color:var(--muted);margin-top:.2rem}
+    /* ── part list ── */
+    .part-row{display:flex;align-items:center;gap:.6rem;padding:.55rem .5rem;border-bottom:1px solid var(--border);font-size:.8rem}
+    .part-row:last-child{border-bottom:none}
+    .part-name{flex:1;font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.1em;color:var(--text)}
+    .badge{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.1em;padding:.15rem .4rem;border-radius:2px;background:var(--panel);color:var(--muted);transition:all .3s}
+    .badge.ok{background:rgba(61,255,192,.1);color:var(--ok)}
+    .badge.warn{background:rgba(245,197,24,.1);color:var(--warn)}
+    /* ── progress bar ── */
+    .progress-wrap{margin:.5rem 0}
+    .progress-label{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sub);display:flex;justify-content:space-between;margin-bottom:.25rem}
+    .progress-bar{height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+    .progress-fill{height:100%;background:linear-gradient(to right,var(--accent),var(--accent2));width:0%;transition:width .1s}
+    /* ── buttons ── */
+    .btn{display:inline-block;padding:.6rem 1.3rem;font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;border-radius:2px;border:none;cursor:pointer;transition:all .3s}
+    .btn-primary{background:var(--accent);color:var(--bg);box-shadow:0 0 16px var(--glow)}
+    .btn-primary:hover:not(:disabled){opacity:.85;box-shadow:0 0 28px var(--glow)}
+    .btn-ghost{background:transparent;color:var(--sub);border:1px solid var(--border)}
+    .btn-ghost:hover:not(:disabled){border-color:var(--accent2);color:var(--accent2)}
+    .btn:disabled{opacity:.35;cursor:not-allowed}
+    .btn-row{display:flex;flex-direction:column;gap:.6rem}
+    /* ── canvas area ── */
+    #preview-canvas{flex:1;display:block;width:100%;height:100%}
+    .canvas-overlay{position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);display:flex;gap:.8rem}
+    /* ── log ── */
+    .log{background:var(--panel);border:1px solid var(--border);border-radius:3px;padding:.6rem .8rem;font-family:'DM Mono',monospace;font-size:.62rem;color:var(--sub);height:90px;overflow-y:auto;line-height:1.7}
+    .log-ok  {color:var(--ok)}
+    .log-warn{color:var(--warn)}
+    .log-err {color:var(--accent)}
+    /* ── stats ── */
+    .stat-row{display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid var(--border);font-size:.78rem}
+    .stat-row:last-child{border-bottom:none}
+    .stat-key{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sub)}
+    .stat-val{color:var(--text)}
+    /* ── part grid (dynamic) ── */
+    #parts-grid{display:flex;flex-direction:column;gap:.5rem}
+    .part-drop{display:grid;grid-template-columns:1fr auto;gap:.4rem;align-items:start}
+    .part-drop .drop-zone{text-align:left;padding:.55rem .7rem}
+    /* ── scrollbar ── */
+    ::-webkit-scrollbar{width:4px}
+    ::-webkit-scrollbar-track{background:transparent}
+    ::-webkit-scrollbar-thumb{background:var(--muted);border-radius:2px}
+  </style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ── HEADER ── -->
+  <header>
+    <span class="logo">Hyphi</span>
+    <span class="logo-sep">/</span>
+    <span class="title">.hpkg Builder</span>
+    <div style="flex:1"></div>
+    <button class="btn btn-ghost" id="btn-reset">Start Over</button>
+  </header>
+
+  <!-- ── LEFT SIDEBAR: file inputs ── -->
+  <aside class="sidebar">
+
+    <div class="section">
+      <span class="sec-label">1 · Manifest</span>
+      <div class="drop-zone" id="dz-assembly" data-accept=".json">
+        <span class="drop-zone-label">assembly.json</span>
+        <span class="drop-zone-name drop-zone-hint">Drop file or click to browse</span>
+      </div>
+      <div style="height:.5rem"></div>
+      <div class="drop-zone" id="dz-leds" data-accept=".json">
+        <span class="drop-zone-label">leds.json</span>
+        <span class="drop-zone-name drop-zone-hint">Drop file or click to browse</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <span class="sec-label">2 · Part Models</span>
+      <div id="parts-grid">
+        <span style="font-size:.75rem;color:var(--muted)">Load assembly.json first</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <span class="sec-label">3 · Textures (optional)</span>
+      <div class="drop-zone" id="dz-textures" data-accept=".webp,.png,.jpg" style="min-height:60px">
+        <span class="drop-zone-label">Diffuse · Normal · Roughness</span>
+        <span class="drop-zone-name drop-zone-hint">Drop multiple texture files</span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ── CENTRE: preview + bake controls ── -->
+  <div class="centre">
+    <canvas id="preview-canvas"></canvas>
+    <div class="canvas-overlay">
+      <button class="btn btn-primary" id="btn-bake" disabled>Bake Lightmaps</button>
+      <button class="btn btn-ghost"   id="btn-skip" disabled>Skip Baking</button>
+    </div>
+  </div>
+
+  <!-- ── RIGHT SIDEBAR: status + output ── -->
+  <aside class="sidebar sidebar-right">
+
+    <div class="section">
+      <span class="sec-label">Status</span>
+      <div id="parts-status"></div>
+    </div>
+
+    <div class="section">
+      <span class="sec-label">Bake Progress</span>
+      <div id="bake-progress">
+        <span style="font-size:.75rem;color:var(--muted)">No meshes loaded yet</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <span class="sec-label">Package</span>
+      <div id="pkg-stats" style="margin-bottom:.8rem">
+        <div class="stat-row"><span class="stat-key">Parts</span><span class="stat-val" id="stat-parts">—</span></div>
+        <div class="stat-row"><span class="stat-key">LEDs</span><span class="stat-val" id="stat-leds">—</span></div>
+        <div class="stat-row"><span class="stat-key">Models</span><span class="stat-val" id="stat-models">—</span></div>
+        <div class="stat-row"><span class="stat-key">Textures</span><span class="stat-val" id="stat-textures">—</span></div>
+        <div class="stat-row"><span class="stat-key">Est. size</span><span class="stat-val" id="stat-size">—</span></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" id="btn-build" disabled>Build .hpkg</button>
+        <button class="btn btn-ghost"   id="btn-dl"    disabled style="display:none">Download Package</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <span class="sec-label">Log</span>
+      <div class="log" id="log"></div>
+    </div>
+
+  </aside>
+
+</div><!-- /app -->
+
+<script type="module">
+import * as THREE              from 'three';
+import { GLTFLoader }          from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader }         from 'three/addons/loaders/DRACOLoader.js';
+import { OrbitControls }       from 'three/addons/controls/OrbitControls.js';
+import JSZip                   from 'jszip';
+import { LightmapBaker }       from '../js/viewer/LightmapBaker.js';
+
+// ── state ─────────────────────────────────────────────────────────────────────
+const state = {
+  assemblyData: null,
+  ledData:      null,
+  modelFiles:   {},   // partId → { file, arrayBuffer, url, mesh }
+  textureFiles: {},   // filename → file
+  lightmaps:    {},   // partId → { texture, canvas }
+  baking:       false,
+  baked:        false,
+  pkgBlob:      null,
+};
+
+// ── Three.js setup ────────────────────────────────────────────────────────────
+const canvas   = document.getElementById('preview-canvas');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.1;
+renderer.shadowMap.enabled = true;
+
+const scene  = new THREE.Scene();
+scene.background = new THREE.Color(0x0a0a0f);
+scene.fog = new THREE.FogExp2(0x0a0a0f, 1.6);
+
+const camera = new THREE.PerspectiveCamera(42, 1, 0.001, 20);
+camera.position.set(0, 0.3, 0.9);
+
+const controls = new OrbitControls(camera, canvas);
+controls.enableDamping = true;
+controls.dampingFactor = 0.08;
+controls.target.set(0, 0.15, 0);
+
+// Lights
+scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+const key = new THREE.DirectionalLight(0xfff5e8, 2.2);
+key.position.set(1.5, 3, 2); key.castShadow = true;
+scene.add(key);
+const fill = new THREE.DirectionalLight(0xd0d8ff, 0.55);
+fill.position.set(-2, 1.5, -1); scene.add(fill);
+const rim = new THREE.DirectionalLight(0x7b5cfa, 1.1);
+rim.position.set(-0.5, -1, -2); scene.add(rim);
+
+const productGroup = new THREE.Group();
+scene.add(productGroup);
+
+// GLTFLoader with Draco
+const draco = new DRACOLoader();
+draco.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');
+const gltfLoader = new GLTFLoader();
+gltfLoader.setDRACOLoader(draco);
+
+// Render loop
+let baker = null;
+let lastT = 0;
+function animate(now) {
+  requestAnimationFrame(animate);
+  const dt = Math.min(0.05, (now - lastT) * 0.001); lastT = now;
+  controls.update(dt);
+  // Update bake progress bars each frame
+  if (baker && state.baking) updateBakeProgress();
+  renderer.render(scene, camera);
+}
+requestAnimationFrame(animate);
+
+// Resize observer
+new ResizeObserver(() => {
+  const w = canvas.clientWidth, h = canvas.clientHeight;
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+}).observe(canvas);
+
+// ── logging ───────────────────────────────────────────────────────────────────
+function log(msg, cls = '') {
+  const el = document.getElementById('log');
+  const line = document.createElement('div');
+  if (cls) line.className = 'log-' + cls;
+  line.textContent = msg;
+  el.appendChild(line);
+  el.scrollTop = el.scrollHeight;
+}
+
+// ── drop zone wiring ──────────────────────────────────────────────────────────
+function wireDZ(el, onFile) {
+  el.addEventListener('dragover', e => { e.preventDefault(); el.classList.add('over'); });
+  el.addEventListener('dragleave', () => el.classList.remove('over'));
+  el.addEventListener('drop', e => {
+    e.preventDefault(); el.classList.remove('over');
+    const files = [...e.dataTransfer.files];
+    if (files.length) onFile(files);
+  });
+  el.addEventListener('click', () => {
+    const inp = document.createElement('input');
+    inp.type = 'file';
+    inp.accept = el.dataset.accept || '*';
+    inp.multiple = el.dataset.accept?.includes(',');
+    inp.onchange = () => { if (inp.files.length) onFile([...inp.files]); };
+    inp.click();
+  });
+}
+
+wireDZ(document.getElementById('dz-assembly'), files => loadAssembly(files[0]));
+wireDZ(document.getElementById('dz-leds'),     files => loadLeds(files[0]));
+wireDZ(document.getElementById('dz-textures'), files => files.forEach(loadTexture));
+
+// ── assembly.json loading ─────────────────────────────────────────────────────
+async function loadAssembly(file) {
+  try {
+    const text = await file.text();
+    state.assemblyData = JSON.parse(text);
+    setDZLoaded('dz-assembly', file.name);
+    log(`Loaded assembly: ${state.assemblyData.parts?.length ?? 0} parts`, 'ok');
+    buildPartSlots();
+    updateStats();
+  } catch(e) { log('assembly.json parse error: ' + e.message, 'err'); }
+}
+
+async function loadLeds(file) {
+  try {
+    const text = await file.text();
+    state.ledData = JSON.parse(text);
+    setDZLoaded('dz-leds', file.name);
+    log(`Loaded leds: ${state.ledData.leds?.length ?? 0} LEDs on ${state.ledData.strips?.length ?? 0} strips`, 'ok');
+    updateStats();
+  } catch(e) { log('leds.json parse error: ' + e.message, 'err'); }
+}
+
+// ── part slots ────────────────────────────────────────────────────────────────
+function buildPartSlots() {
+  const grid = document.getElementById('parts-grid');
+  const status = document.getElementById('parts-status');
+  grid.innerHTML = '';
+  status.innerHTML = '';
+
+  if (!state.assemblyData?.parts) return;
+
+  state.assemblyData.parts.forEach(part => {
+    // Drop zone
+    const wrap = document.createElement('div');
+    wrap.className = 'part-drop';
+
+    const dz = document.createElement('div');
+    dz.className = 'drop-zone';
+    dz.dataset.accept = '.glb';
+    dz.dataset.partId = part.id;
+    dz.innerHTML = `<span class="drop-zone-label">${part.id}</span>
+      <span class="drop-zone-name drop-zone-hint">Drop .glb</span>`;
+    wireDZ(dz, files => loadPartModel(part.id, files[0]));
+    wrap.appendChild(dz);
+    grid.appendChild(wrap);
+
+    // Status row
+    const row = document.createElement('div');
+    row.className = 'part-row';
+    row.id = 'status-row-' + part.id;
+    row.innerHTML = `<span class="part-name">${part.id}</span>
+      <span class="badge" id="badge-model-${part.id}">no model</span>
+      <span class="badge" id="badge-bake-${part.id}">unbaked</span>`;
+    status.appendChild(row);
+  });
+}
+
+// ── model loading ─────────────────────────────────────────────────────────────
+async function loadPartModel(partId, file) {
+  const ab  = await file.arrayBuffer();
+  const url = URL.createObjectURL(new Blob([ab], { type: 'model/gltf-binary' }));
+
+  gltfLoader.load(url, gltf => {
+    // Remove previous mesh for this part
+    const old = productGroup.getObjectByName(partId);
+    if (old) productGroup.remove(old);
+
+    const root = gltf.scene;
+    root.name  = partId;
+
+    // Apply assembled transform from assembly.json
+    const def = state.assemblyData.parts.find(p => p.id === partId);
+    if (def) {
+      const [px,py,pz] = def.assembledPosition || [0,0,0];
+      const [rx,ry,rz] = def.assembledRotation || [0,0,0];
+      root.position.set(px,py,pz);
+      root.rotation.set(rx,ry,rz);
+      if (def.material) {
+        root.traverse(c => {
+          if (c.isMesh) {
+            c.material = new THREE.MeshStandardMaterial({
+              color: def.material.color ?? '#888',
+              roughness: def.material.roughness ?? 0.5,
+              metalness: def.material.metalness ?? 0,
+              transparent: def.material.transparent ?? false,
+              opacity: def.material.opacity ?? 1,
+            });
+            c.castShadow = c.receiveShadow = true;
+          }
+        });
+      }
+    }
+
+    productGroup.add(root);
+    state.modelFiles[partId] = { file, arrayBuffer: ab, url, root };
+
+    // Update UI
+    setDZLoaded(`dz-${partId}`, file.name);
+    setBadge('badge-model-' + partId, 'ok', '✓ glb');
+    log(`Loaded model: ${partId} (${(file.size/1024).toFixed(0)} KB)`, 'ok');
+    updateStats();
+    checkReadyToBake();
+  }, undefined, err => {
+    log(`Model load failed [${partId}]: ${err.message || err}`, 'err');
+  });
+}
+
+function loadTexture(file) {
+  state.textureFiles[file.name] = file;
+  const nameEl = document.querySelector('#dz-textures .drop-zone-name');
+  const count = Object.keys(state.textureFiles).length;
+  nameEl.textContent = `${count} texture${count>1?'s':''} loaded`;
+  document.getElementById('dz-textures').classList.add('loaded');
+  updateStats();
+  log(`Texture: ${file.name}`, 'ok');
+}
+
+// ── baking ────────────────────────────────────────────────────────────────────
+function checkReadyToBake() {
+  const hasModels = Object.keys(state.modelFiles).length > 0;
+  document.getElementById('btn-bake').disabled = !hasModels || state.baking;
+  document.getElementById('btn-skip').disabled = !hasModels || state.baking;
+}
+
+document.getElementById('btn-bake').addEventListener('click', startBaking);
+document.getElementById('btn-skip').addEventListener('click', () => {
+  state.baked = true;
+  log('Skipped lightmap baking.', 'warn');
+  document.getElementById('btn-build').disabled = false;
+  document.getElementById('btn-bake').disabled = true;
+  document.getElementById('btn-skip').disabled = true;
+});
+
+function startBaking() {
+  state.baking = true;
+  document.getElementById('btn-bake').disabled = true;
+  document.getElementById('btn-skip').disabled = true;
+  log('Starting lightmap baking…');
+
+  // Collect all meshes
+  const meshes = [];
+  productGroup.traverse(obj => { if (obj.isMesh) meshes.push(obj); });
+
+  if (!meshes.length) { log('No meshes to bake.', 'warn'); return; }
+
+  // Build progress UI
+  const wrap = document.getElementById('bake-progress');
+  wrap.innerHTML = '';
+  meshes.forEach(m => {
+    const div = document.createElement('div');
+    div.className = 'progress-wrap';
+    div.innerHTML = `<div class="progress-label"><span>${m.name || m.uuid.slice(0,8)}</span><span id="pct-${m.uuid}">0%</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="bar-${m.uuid}"></div></div>`;
+    wrap.appendChild(div);
+  });
+
+  baker = new LightmapBaker(renderer, scene, {
+    resolution: 512, samplesPerPass: 2, maxPasses: 128,
+  });
+  meshes.forEach(m => baker.addMesh(m));
+
+  baker.start(() => {
+    // Apply baked lightmaps
+    meshes.forEach(m => {
+      const lm = baker.getLightmap(m);
+      if (lm) {
+        m.material.lightMap = lm;
+        m.material.lightMapIntensity = 1.4;
+        m.material.needsUpdate = true;
+        // Store canvas for packaging
+        state.lightmaps[m.name || m.uuid] = lm;
+        setBadge('badge-bake-' + m.name, 'ok', '✓ baked');
+      }
+    });
+    state.baking = false;
+    state.baked  = true;
+    log('Lightmap baking complete!', 'ok');
+    document.getElementById('btn-build').disabled = false;
+    updateStats();
+  });
+}
+
+function updateBakeProgress() {
+  if (!baker) return;
+  const p = baker.progress;
+  baker._entries?.forEach((entry, mesh) => {
+    const localP = Math.min(1, entry.sampleCount / (baker.maxPasses * 10));
+    const bar = document.getElementById('bar-' + mesh.uuid);
+    const pct = document.getElementById('pct-' + mesh.uuid);
+    if (bar) bar.style.width = (localP * 100).toFixed(1) + '%';
+    if (pct) pct.textContent = (localP * 100).toFixed(0) + '%';
+  });
+}
+
+// ── packaging ─────────────────────────────────────────────────────────────────
+document.getElementById('btn-build').addEventListener('click', buildPackage);
+
+async function buildPackage() {
+  document.getElementById('btn-build').disabled = true;
+  log('Building .hpkg…');
+
+  const zip = new JSZip();
+
+  // assembly.json + leds.json
+  if (state.assemblyData) zip.file('assembly.json', JSON.stringify(state.assemblyData, null, 2));
+  if (state.ledData)      zip.file('leds.json',     JSON.stringify(state.ledData,     null, 2));
+
+  // Models
+  let modelCount = 0;
+  for (const [partId, entry] of Object.entries(state.modelFiles)) {
+    zip.file(`models/${partId}.glb`, entry.arrayBuffer);
+    modelCount++;
+  }
+
+  // Textures
+  let texCount = 0;
+  for (const [name, file] of Object.entries(state.textureFiles)) {
+    zip.file(`textures/${name}`, await file.arrayBuffer());
+    texCount++;
+  }
+
+  // Lightmaps — render DataTexture to canvas → PNG blob
+  let lmCount = 0;
+  for (const [name, tex] of Object.entries(state.lightmaps)) {
+    try {
+      const res = tex.image.width;
+      const offscreen = document.createElement('canvas');
+      offscreen.width = offscreen.height = res;
+      const ctx = offscreen.getContext('2d');
+      const id  = ctx.createImageData(res, res);
+      id.data.set(tex.image.data);
+      ctx.putImageData(id, 0, 0);
+      const pngBlob = await new Promise(r => offscreen.toBlob(r, 'image/png'));
+      zip.file(`lightmaps/${name}-ao.png`, await pngBlob.arrayBuffer());
+      lmCount++;
+    } catch(e) { log(`Lightmap export failed [${name}]: ${e.message}`, 'warn'); }
+  }
+
+  // manifest.json
+  const manifest = {
+    version: '1.0',
+    product: state.assemblyData?.product ?? 'unknown',
+    productName: state.assemblyData?.name ?? '',
+    created: new Date().toISOString().slice(0,10),
+    schemaVersion: { assembly: '1.0', ledData: '1.0' },
+    files: { assembly: 'assembly.json', leds: 'leds.json', models: 'models/', textures: 'textures/', lightmaps: 'lightmaps/' },
+    parts: (state.assemblyData?.parts ?? []).map(p => ({
+      id: p.id,
+      model:    modelCount ? `models/${p.id}.glb` : null,
+      lightmap: state.lightmaps[p.id] ? `lightmaps/${p.id}-ao.png` : null,
+    })),
+    stats: {
+      totalLEDs:   state.ledData?.leds?.length   ?? 0,
+      totalStrips: state.ledData?.strips?.length ?? 0,
+      totalParts:  state.assemblyData?.parts?.length ?? 0,
+    },
+  };
+  zip.file('manifest.json', JSON.stringify(manifest, null, 2));
+
+  const blob = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE', compressionOptions: { level: 6 } },
+    meta => { /* could show overall progress here */ }
+  );
+
+  state.pkgBlob = blob;
+  const sizeKB  = (blob.size / 1024).toFixed(0);
+
+  document.getElementById('stat-size').textContent = sizeKB + ' KB';
+  document.getElementById('btn-dl').style.display = '';
+  document.getElementById('btn-dl').disabled = false;
+  log(`Package built: ${sizeKB} KB  (${modelCount} models, ${texCount} textures, ${lmCount} lightmaps)`, 'ok');
+}
+
+document.getElementById('btn-dl').addEventListener('click', () => {
+  if (!state.pkgBlob) return;
+  const product = state.assemblyData?.product ?? 'product';
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(state.pkgBlob);
+  a.download = `${product}.hpkg`;
+  a.click();
+  log(`Downloaded ${product}.hpkg`, 'ok');
+});
+
+// ── reset ─────────────────────────────────────────────────────────────────────
+document.getElementById('btn-reset').addEventListener('click', () => {
+  location.reload();
+});
+
+// ── helpers ───────────────────────────────────────────────────────────────────
+function setDZLoaded(id, name) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.add('loaded');
+  const nameEl = el.querySelector('.drop-zone-name');
+  if (nameEl) { nameEl.textContent = name; nameEl.classList.remove('drop-zone-hint'); }
+}
+
+function setBadge(id, type, text) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.className = 'badge ' + (type || '');
+  el.textContent = text;
+}
+
+function updateStats() {
+  document.getElementById('stat-parts').textContent    = state.assemblyData?.parts?.length ?? '—';
+  document.getElementById('stat-leds').textContent     = state.ledData?.leds?.length ?? '—';
+  document.getElementById('stat-models').textContent   = Object.keys(state.modelFiles).length || '—';
+  document.getElementById('stat-textures').textContent = Object.keys(state.textureFiles).length || '—';
+}
+
+log('Ready. Drop assembly.json to begin.');
+</script>
+</body>
+</html>

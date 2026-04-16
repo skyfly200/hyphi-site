@@ -100,20 +100,27 @@ FOLD is an open format by Erik Demaine et al.:
 
 ---
 
-## Glow Flora petal example
+## Glow Flora origami lily example
 
-File: `data/glow-flora/fold/petal.fold`
+File: `data/glow-flora/fold/lily.fold`
 
-The Glow Flora petal is a tapered leaf (8 cm × 20 cm in the flat pattern) with:
+The Glow Flora lily is a traditional origami lily folded from a 10 cm square.
+17 vertices — 4 corners, 4 edge midpoints, centre, and 8 quarter-edge points.
 
-| Fold | Type | Angle | Effect |
+| Fold group | Type | Angle | Effect |
 |---|---|---|---|
-| Central spine (3 segments) | Mountain `M` | −25° to −35° | Cups the petal lengthwise |
-| Left lateral ribs (3 segments) | Valley `V` | +15° to +20° | Curves left edge upward |
-| Right lateral ribs (3 segments) | Valley `V` | +15° to +20° | Curves right edge upward |
+| Diagonal + perpendicular base folds (8) | Valley `V` | −160° | Collapses the square into preliminary base |
+| Petal folds from quarter-points to centre (8) | Mountain `M` | +35° | Opens the 4 petals outward |
+| Tip curl creases (8) | Valley `V` | +20° | Curls each petal tip gently back |
+| Perimeter edges (16) | Border `B` | 0° | Cut/perimeter boundary |
 
-The `frames` array encodes two states: `flat` (all angles 0°) for the exploded
-view and `cupped` (target angles) for the assembled view.
+The `frames` array encodes three states:
+
+| Frame | Description |
+|---|---|
+| `Flat` | Unfolded square sheet — all angles 0° |
+| `Preliminary base` | Square base collapsed (base folds at −72°, partial petal/tip) |
+| `Lily assembled` | 4 petals fully open with curled tips (full target angles) |
 
 ---
 
@@ -138,7 +145,7 @@ import { FOLDLoader }       from '/js/viewer/FOLDLoader.js';
 import { OrigamiFoldEffect } from '/js/viewer/AnimationEffects.js';
 
 // Load the .fold file
-const result = await FOLDLoader.load('/data/glow-flora/fold/petal.fold');
+const result = await FOLDLoader.load('/data/glow-flora/fold/lily.fold');
 
 console.log(result.meta);
 // { title: 'Glow Flora Petal', author: 'Hyphi', units: 'meter', frameCount: 2 }

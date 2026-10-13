@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E33048QPGB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-E33048QPGB');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glow Flora Home - Hyphi</title>
+  <meta name="description" content="A potted LED bouquet for shelves, desks, and living spaces." />
+  <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../product.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../../">
+    <img src="../hyphi-mark.svg" alt="">
+    <span class="nav-wordmark">Hyphi</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../glow-flora-clip/">Glow Flora Clip</a></li>
+    <li><a href="../glow-flora-home/" aria-current="page">Glow Flora Home</a></li>
+    <li><a href="../smart-sprout/">Smart Sprout</a></li>
+    <li><a href="https://wiki.hyphi.art" target="_blank">Wiki</a></li>
+  </ul>
+</nav>
+
+<main class="product">
+  <!--
+    PHOTOS: each <li> below is one photo slot. Drop a file at its data-src path
+    (relative to this page) and it appears; missing files show a placeholder.
+    3D EXPLORER: add data-model="models/glow-flora-home.glb" (and optionally
+    data-poster="images/01.jpg") to the .media div to enable the 3D toggle.
+  -->
+  <div class="media" data-model="">
+    <div class="stage"></div>
+    <ul class="thumbs">
+          <li data-src="images/01.jpg" data-label="Prototype"></li>
+          <li data-src="images/02.jpg" data-label="Lit at night"></li>
+          <li data-src="images/03.jpg" data-label="On a shelf"></li>
+          <li data-src="images/04.jpg" data-label="Detail"></li>
+    </ul>
+  </div>
+
+  <div class="info">
+    <p class="eyebrow">Glow Flora <span class="badge">Coming Soon</span></p>
+    <h1>Glow Flora <strong>Home</strong></h1>
+    <p class="tagline">A bouquet of programmable LED blooms, potted and ready for your shelf.</p>
+      <p>Glow Flora Home brings the blooms indoors: a potted arrangement of addressable LED flowers driven by an ESP32 running WLED, so every petal can fade, pulse, and react. Control it over Wi-Fi or from the Hyphi Hub app over Bluetooth.</p>
+
+    <h2>Features</h2>
+    <ul class="features">
+        <li>Multiple addressable LED blooms on sculpted stems</li>
+        <li>ESP32 brain running WLED out of the box</li>
+        <li>Wi-Fi control, plus Bluetooth via the Hyphi Hub app</li>
+        <li>Rechargeable 18650 battery, no outlet required</li>
+        <li>Open hardware and firmware, documented on the wiki</li>
+    </ul>
+
+    <h2>Specs</h2>
+    <table class="specs">
+      <tbody>
+        <tr><th>Controller</th><td>ESP32 (Seeed Xiao S3)</td></tr>
+        <tr><th>LEDs</th><td>WS2812B addressable</td></tr>
+        <tr><th>Firmware</th><td>WLED</td></tr>
+        <tr><th>Power</th><td>18650 Li-ion × 1</td></tr>
+        <tr><th>Runtime</th><td><span class="tbd">TBD</span></td></tr>
+        <tr><th>Size</th><td><span class="tbd">TBD</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="actions">
+      <a class="btn-primary" href="../../#signup">Get updates</a>
+      <a class="btn-ghost" href="/w/gfhome" target="_blank">Docs on the wiki</a>
+    </div>
+  </div>
+</main>
+
+<div class="divider"></div>
+
+<section class="more">
+  <h2>More from Hyphi</h2>
+  <div class="more-grid">
+      <a class="more-card" href="../glow-flora-clip/"><h3>Glow Flora Clip</h3><p>A pocket-sized bloom for bags, costumes, tents, and festival gear.</p></a>
+      <a class="more-card" href="../smart-sprout/"><h3>Smart Sprout</h3><p>An interactive light sculpture that responds to touch, sound, and presence.</p></a>
+  </div>
+</section>
+
+<footer>
+  <a href="../../">← Hyphi home</a>
+  <span>© 2025 Hyphi</span>
+</footer>
+
+<script src="../product.js"></script>
+</body>
+</html>

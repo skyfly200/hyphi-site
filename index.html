@@ -376,6 +376,28 @@
       text-underline-offset: 2px;
     }
 
+    #products { scroll-margin-top: 6rem; }
+
+    .pillar-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin-top: .7rem;
+      list-style: none;
+    }
+
+    .pillar-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: .62rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      transition: color .3s;
+    }
+
+    .pillar-links a:hover { color: var(--accent); }
+
     /* ── OPEN SOURCE ── */
     .open-source {
       position: relative;
@@ -661,6 +683,7 @@
   </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
+    <li><a href="#products">Products</a></li>
     <li><a href="#open-source">Ethos</a></li>
     <li><a href="#signup">Updates</a></li>
     <li><a href="https://wiki.hyphi.art" target="_blank">Wiki</a></li>
@@ -748,12 +771,16 @@
       <p>We design for creatives, flow artists, festival-goers, and anyone who wants their world artfully lit with intention and alive with light. Built open, from hardware to firmware. Our ethos is community.</p>
       <p>Based in Boulder, CO. Assembled with care. Lit with intent.</p>
     </div>
-    <div class="pillars-mini reveal">
+    <div class="pillars-mini reveal" id="products">
       <div class="pillar-row">
         <span class="pillar-icon">🌸</span>
         <div class="pillar-text">
           <h3>Glow Flora <span class="badge-soon">Coming Soon</span></h3>
           <p>Organic LED blooms from tabletop accents to room-filling installations. Battery-powered and endlessly programmable.</p>
+          <ul class="pillar-links">
+            <li><a href="products/glow-flora-clip/">Clip →</a></li>
+            <li><a href="products/glow-flora-home/">Home →</a></li>
+          </ul>
         </div>
       </div>
       <div class="pillar-row">
@@ -761,6 +788,9 @@
         <div class="pillar-text">
           <h3>Smart Sprout <span class="badge-soon">In Development</span></h3>
           <p>Interactive sculptures that respond to touch, sound, and presence. Living light, rooted in the wild.</p>
+          <ul class="pillar-links">
+            <li><a href="products/smart-sprout/">Smart Sprout →</a></li>
+          </ul>
         </div>
       </div>
       <div class="pillar-row">

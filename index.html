@@ -313,6 +313,33 @@
       margin-bottom: 1.1rem;
     }
 
+    .origin-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* ── PRODUCTS ── */
+    .products {
+      position: relative;
+      z-index: 1;
+      padding: 8rem 2rem;
+    }
+
+    .products-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .products-head { max-width: 720px; margin-bottom: 3rem; }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.6rem;
+    }
+
+    .products-grid.three { grid-template-columns: repeat(3, 1fr); }
+
     .pillars-mini {
       display: flex;
       flex-direction: column;
@@ -375,6 +402,26 @@
       text-decoration: underline;
       text-underline-offset: 2px;
     }
+
+    .pillar-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin-top: .7rem;
+      list-style: none;
+    }
+
+    .pillar-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: .62rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      transition: color .3s;
+    }
+
+    .pillar-links a:hover { color: var(--accent); }
 
     /* ── OPEN SOURCE ── */
     .open-source {
@@ -589,6 +636,7 @@
       nav { padding: 1.1rem 1.5rem; }
       .nav-links { display: none; }
       .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .products-grid, .products-grid.three { grid-template-columns: 1fr; }
       .open-source-inner { grid-template-columns: 1fr; gap: 3rem; }
       .open-source-inner .about-body { order: -1; }
       .open-source-inner .pillars-mini { order: 1; }
@@ -661,6 +709,8 @@
   </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#builders">Builders</a></li>
     <li><a href="#open-source">Ethos</a></li>
     <li><a href="#signup">Updates</a></li>
     <li><a href="https://wiki.hyphi.art" target="_blank">Wiki</a></li>
@@ -740,7 +790,7 @@
 
 <!-- ABOUT -->
 <section class="about" id="about">
-  <div class="about-inner">
+  <div class="origin-inner">
     <div class="about-body reveal">
       <span class="section-tag">Origin</span>
       <h2 class="about-heading">Light as a <em>living</em><br>medium</h2>
@@ -748,12 +798,28 @@
       <p>We design for creatives, flow artists, festival-goers, and anyone who wants their world artfully lit with intention and alive with light. Built open, from hardware to firmware. Our ethos is community.</p>
       <p>Based in Boulder, CO. Assembled with care. Lit with intent.</p>
     </div>
-    <div class="pillars-mini reveal">
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="products-inner">
+    <div class="products-head about-body reveal">
+      <span class="section-tag">Products</span>
+      <h2 class="about-heading">What we're <em>growing</em></h2>
+    </div>
+    <div class="products-grid three reveal">
       <div class="pillar-row">
         <span class="pillar-icon">🌸</span>
         <div class="pillar-text">
           <h3>Glow Flora <span class="badge-soon">Coming Soon</span></h3>
           <p>Organic LED blooms from tabletop accents to room-filling installations. Battery-powered and endlessly programmable.</p>
+          <ul class="pillar-links">
+            <li><a href="products/glow-flora-clip/">Clip →</a></li>
+            <li><a href="products/glow-flora-home/">Home →</a></li>
+          </ul>
         </div>
       </div>
       <div class="pillar-row">
@@ -761,6 +827,9 @@
         <div class="pillar-text">
           <h3>Smart Sprout <span class="badge-soon">In Development</span></h3>
           <p>Interactive sculptures that respond to touch, sound, and presence. Living light, rooted in the wild.</p>
+          <ul class="pillar-links">
+            <li><a href="products/smart-sprout/">Smart Sprout →</a></li>
+          </ul>
         </div>
       </div>
       <div class="pillar-row">
@@ -770,11 +839,28 @@
           <p>Luminous props built for the art of movement: poi, staffs, and beyond. Weighted for flow, lit for the dark.</p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- BUILDERS -->
+<section class="products" id="builders">
+  <div class="products-inner">
+    <div class="products-head about-body reveal">
+      <span class="section-tag">For Builders</span>
+      <h2 class="about-heading">Tools to build <em>with</em></h2>
+    </div>
+    <div class="products-grid reveal">
       <div class="pillar-row">
         <span class="pillar-icon">🦉</span>
         <div class="pillar-text">
           <h3>OWLS Protocol <span class="badge-soon">In Development</span></h3>
           <p>An open standard for wireless lighting sync across any hardware. Community-driven and fully documented.</p>
+          <ul class="pillar-links">
+            <li><a href="https://github.com/skyfly200/OWLS" target="_blank" rel="noopener">OWLS on GitHub →</a></li>
+          </ul>
         </div>
       </div>
       <div class="pillar-row">
@@ -819,7 +905,7 @@
         <span class="pillar-icon">🦉</span>
         <div class="pillar-text">
           <h3>Open Standards</h3>
-          <p>OWLS is hardware-agnostic and free to implement. Sync light across any device or brand.</p>
+          <p>Built on open protocols anyone can implement: <a href="https://kno.wled.ge" target="_blank" rel="noopener">WLED</a> for LED control and <a href="https://github.com/skyfly200/OWLS" target="_blank" rel="noopener">OWLS</a> for wireless sync. Hardware-agnostic, across any device or brand.</p>
         </div>
       </div>
     </div>

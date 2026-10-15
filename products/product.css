@@ -385,3 +385,98 @@ footer a:hover { color: var(--accent); }
   .more { padding: 3.5rem 1rem 4rem; }
   footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1rem; }
 }
+
+/* ── SIGN-UP MODAL ── */
+.signup-modal {
+  margin: auto;
+  width: min(460px, calc(100vw - 2rem));
+  padding: 0;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  box-shadow: 0 0 80px var(--glow2), 0 0 40px var(--glow);
+  text-align: center;
+}
+
+.signup-inner { position: relative; padding: 2.6rem 2rem 2.2rem; }
+
+.signup-modal::backdrop { background: rgba(5,5,10,.75); backdrop-filter: blur(4px); }
+
+.signup-close {
+  position: absolute;
+  top: .6rem; right: .9rem;
+  background: none;
+  border: none;
+  color: var(--sub);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.signup-close:hover { color: var(--accent); }
+
+.signup-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: .7rem;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  margin-bottom: .8rem;
+}
+
+.signup-modal h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 400;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  margin-bottom: .8rem;
+}
+
+.signup-modal h2 strong { color: var(--accent); font-weight: 400; }
+
+.signup-copy { font-size: .92rem; line-height: 1.6; color: var(--sub); margin-bottom: 1.6rem; }
+
+.signup-field {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+
+.signup-field:focus-within { border-color: var(--accent); }
+
+.signup-field input {
+  flex: 1;
+  min-width: 0;
+  padding: .9rem 1.1rem;
+  background: var(--bg);
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: .95rem;
+  font-weight: 300;
+}
+
+.signup-field input::placeholder { color: var(--sub); }
+
+.signup-field button {
+  padding: .9rem 1.4rem;
+  background: var(--accent);
+  border: none;
+  color: var(--bg);
+  font-family: 'DM Mono', monospace;
+  font-size: .68rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.signup-field button:hover { opacity: .85; }
+
+@media (max-width: 480px) {
+  .signup-field { flex-direction: column; }
+}

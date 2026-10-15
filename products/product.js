@@ -108,3 +108,68 @@
 
   if (items.length) show(0);
 })();
+
+/* Sign-up modal.
+ *
+ * Any [data-signup="<product>"] link opens a Mailchimp sign-up dialog. The
+ * product is sent as the PRODUCT merge field, so the audience needs a text
+ * field with that merge tag (Audience → Settings → Audience fields). Without
+ * JS the link falls back to the homepage sign-up form.
+ */
+(() => {
+  const MC_ACTION = 'https://art.us6.list-manage.com/subscribe/post?u=ac305ca222d2841ab524e6ea3&id=4baeb2e2b3&f_id=00d41de2f0';
+  const MC_HONEYPOT = 'b_ac305ca222d2841ab524e6ea3_4baeb2e2b3';
+
+  const triggers = document.querySelectorAll('[data-signup]');
+  if (!triggers.length) return;
+
+  const dialog = document.createElement('dialog');
+  dialog.className = 'signup-modal';
+  dialog.setAttribute('aria-labelledby', 'signup-modal-title');
+  dialog.innerHTML = `<div class="signup-inner">
+    <button type="button" class="signup-close" aria-label="Close">×</button>
+    <p class="signup-eyebrow">Be early</p>
+    <h2 id="signup-modal-title">Get <strong></strong> updates</h2>
+    <p class="signup-copy">News on this product, plus new releases and deals. No spam.</p>
+    <form method="post" target="_blank" novalidate>
+      <input type="hidden" name="PRODUCT">
+      <div style="position:absolute;left:-5000px" aria-hidden="true">
+        <input type="text" name="${MC_HONEYPOT}" tabindex="-1" value="">
+      </div>
+      <div class="signup-field">
+        <input type="email" name="EMAIL" placeholder="your@email.com" autocomplete="email" required aria-label="Email">
+        <button type="submit">Notify me</button>
+      </div>
+    </form></div>`;
+  document.body.append(dialog);
+
+  const form = dialog.querySelector('form');
+  form.action = MC_ACTION;
+  const productField = form.elements.PRODUCT;
+  const email = form.elements.EMAIL;
+  const copy = dialog.querySelector('.signup-copy');
+  const defaultCopy = copy.textContent;
+
+  triggers.forEach(el => el.addEventListener('click', e => {
+    e.preventDefault();
+    productField.value = el.dataset.signup;
+    copy.textContent = defaultCopy;
+    dialog.querySelector('h2 strong').textContent =
+      el.dataset.signupName || document.querySelector('.info h1')?.textContent.trim() || 'Hyphi';
+    dialog.showModal();
+    email.focus();
+  }));
+
+  dialog.querySelector('.signup-close').addEventListener('click', () => dialog.close());
+  // Click on the backdrop closes it.
+  dialog.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
+
+  form.addEventListener('submit', e => {
+    if (!email.checkValidity()) { e.preventDefault(); email.reportValidity(); return; }
+    // Mailchimp opens in a new tab; leave a thank-you here.
+    setTimeout(() => {
+      form.reset();
+      copy.textContent = 'Thanks! Check the new tab to confirm your subscription.';
+    }, 0);
+  });
+})();

@@ -313,6 +313,31 @@
       margin-bottom: 1.1rem;
     }
 
+    .origin-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* ── PRODUCTS ── */
+    .products {
+      position: relative;
+      z-index: 1;
+      padding: 8rem 2rem;
+    }
+
+    .products-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .products-head { max-width: 720px; margin-bottom: 3rem; }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.6rem;
+    }
+
     .pillars-mini {
       display: flex;
       flex-direction: column;
@@ -375,8 +400,6 @@
       text-decoration: underline;
       text-underline-offset: 2px;
     }
-
-    #products { scroll-margin-top: 6rem; }
 
     .pillar-links {
       display: flex;
@@ -611,6 +634,7 @@
       nav { padding: 1.1rem 1.5rem; }
       .nav-links { display: none; }
       .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .products-grid { grid-template-columns: 1fr; }
       .open-source-inner { grid-template-columns: 1fr; gap: 3rem; }
       .open-source-inner .about-body { order: -1; }
       .open-source-inner .pillars-mini { order: 1; }
@@ -763,7 +787,7 @@
 
 <!-- ABOUT -->
 <section class="about" id="about">
-  <div class="about-inner">
+  <div class="origin-inner">
     <div class="about-body reveal">
       <span class="section-tag">Origin</span>
       <h2 class="about-heading">Light as a <em>living</em><br>medium</h2>
@@ -771,7 +795,19 @@
       <p>We design for creatives, flow artists, festival-goers, and anyone who wants their world artfully lit with intention and alive with light. Built open, from hardware to firmware. Our ethos is community.</p>
       <p>Based in Boulder, CO. Assembled with care. Lit with intent.</p>
     </div>
-    <div class="pillars-mini reveal" id="products">
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="products-inner">
+    <div class="products-head about-body reveal">
+      <span class="section-tag">Products</span>
+      <h2 class="about-heading">What we're <em>growing</em></h2>
+    </div>
+    <div class="products-grid reveal">
       <div class="pillar-row">
         <span class="pillar-icon">🌸</span>
         <div class="pillar-text">
@@ -805,6 +841,9 @@
         <div class="pillar-text">
           <h3>OWLS Protocol <span class="badge-soon">In Development</span></h3>
           <p>An open standard for wireless lighting sync across any hardware. Community-driven and fully documented.</p>
+          <ul class="pillar-links">
+            <li><a href="https://github.com/skyfly200/OWLS" target="_blank" rel="noopener">OWLS on GitHub →</a></li>
+          </ul>
         </div>
       </div>
       <div class="pillar-row">
@@ -849,7 +888,7 @@
         <span class="pillar-icon">🦉</span>
         <div class="pillar-text">
           <h3>Open Standards</h3>
-          <p>OWLS is hardware-agnostic and free to implement. Sync light across any device or brand.</p>
+          <p><a href="https://github.com/skyfly200/OWLS" target="_blank" rel="noopener">OWLS</a> is hardware-agnostic and free to implement. Sync light across any device or brand.</p>
         </div>
       </div>
     </div>

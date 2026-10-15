@@ -11,7 +11,7 @@ Static site for [hyphi.art](https://hyphi.art), deployed on Netlify. No build st
 
 Any element with `data-signup="<product-slug>"` opens the sign-up modal (see `products/product.js`). The modal posts to the same Mailchimp audience as the homepage form, plus a hidden `PRODUCT` merge field set to the slug, e.g. `glow-flora-clip`, `glow-flora-home` or `smart-sprout`. The homepage form doesn't send `PRODUCT`, so those subscribers have it blank.
 
-Mailchimp only stores the **first** product a subscriber signed up from; signing up again from another page doesn't overwrite it.
+As far as I know, Mailchimp doesn't update an existing subscriber's fields when they sign up again through an embedded form. So `PRODUCT` usually holds the **first** product someone signed up from.
 
 Ways to use it later:
 
